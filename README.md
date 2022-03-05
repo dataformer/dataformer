@@ -1,7 +1,9 @@
 # Dataformer
+
 Dataformer makes text processing simple through an interactive graphical user interface.
 
 ## Setting up
+
 Dataformer currently uses [poetry](https://python-poetry.org/) ([install instructions](https://python-poetry.org/docs/master/#installing-with-the-official-installer)) for Python packaging and dependency management and [npm](https://www.npmjs.com/package/node) for managing the frontend. After installing these tools (and their dependencies), run
 
 ```
@@ -17,6 +19,7 @@ poetry shell
 ```
 
 ## Adding dependencies
+
 New Python dependencies can be added by running
 
 ```
@@ -33,6 +36,7 @@ npm install <dependency>
 ```
 
 ## Running the app
+
 You can either run the server and the frontend separately (probably most convenient for development) or together using a Docker container. In order to run the server, make sure that the virtual environment for the project is activated (i.e. run `poetry shell` if needed) and run
 
 ```
@@ -57,8 +61,17 @@ docker run -p 8000:8000 dataformer
 in the repository root. This will build and start the application on `localhost:8000`.
 
 ## Formatting
-You can format the Python code using [black](https://github.com/psf/black) by running
+
+You can format the Python code using [Black](https://github.com/psf/black) by running
 
 ```
 black .
 ```
+
+You can format the React code using [Prettier](https://github.com/prettier/prettier) by running
+
+```
+npx prettier --write .
+```
+
+in the `/frontend` directory. If you are using Visual Studio Code, both Black and Prettier can be set up to automatically format the code on saving files. Alternately, the formatters can be configured as pre-commit Git hooks.
