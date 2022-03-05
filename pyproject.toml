@@ -2,7 +2,7 @@
 name = "dataformer"
 version = "0.1.0"
 description = ""
-authors = ["Adam Dejl <adam.dejl18@imperial.ac.uk>"]
+authors = ["Adam Dejl <adam.dejl18@imperial.ac.uk>", "Sergio Perez <sperez23@mit.edu>", "Evan Rubel <erubel@mit.edu>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
