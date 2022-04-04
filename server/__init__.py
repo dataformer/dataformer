@@ -2,10 +2,13 @@ __version__ = "0.1.0"
 
 from flask import Flask, escape, request, send_from_directory
 from flask_restful import Api
+from . import api as resources
 
 
 def init_api(app):
     api = Api(app)
+
+    api.add_resource(resources.ExecuteResource, "/api/v1/execute/<string:command>")
 
 
 def create_app():
@@ -20,10 +23,5 @@ def create_app():
     @app.route("/status")
     def status():
         return {"status": "OK"}
-
-    @app.route("/hello")
-    def echo():
-        name = request.args.get("name", "World")
-        return f"Hello {escape(name)}!"
 
     return app

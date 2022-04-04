@@ -1,28 +1,62 @@
 import React, { useEffect, useState } from "react";
-import Button from '@mui/material/Button';
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+import TextField from "@mui/material/TextField";
+import Typography from "@mui/material/Typography";
 import logo from "./logo.svg";
 import "./App.css";
 
 function App() {
-  const [serverMessage, setServerMessage] = useState("...");
+  const [input, setInput] = useState("");
+  const [output, setOutput] = useState("");
 
-  useEffect(() => {
-    fetch("/hello?name=Frontend")
+  function executeBash() {
+    fetch(`/api/v1/execute/${input}`, { method: "POST" })
       .then((response) => response.text())
-      .then((msg) => setServerMessage(msg));
-  });
+      .then((output) => {
+        setOutput(output.trim());
+        console.log(output);
+      });
+  }
 
   return (
     <div className="App">
-      <div className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h2>Welcome to Dataformer!</h2>
-      </div>
-      <p className="App-intro">Server says: {serverMessage}</p>
-      <p className="App-intro">
-        To get started, edit <code>src/App.js</code> and save to reload.
-      </p>
-      <Button variant="contained">Hello World</Button>
+      <Typography variant="h2" component="div" gutterBottom>
+        Welcome to Dataformer!
+      </Typography>
+      <Box
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "50ch" },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        <div>
+          <TextField
+            id="input-field"
+            label="Input"
+            multiline
+            minRows={10}
+            fullWidth
+            value={input}
+            onChange={(event) => setInput(event.target.value)}
+          />
+          <TextField
+            id="output-field"
+            label="Output"
+            multiline
+            minRows={10}
+            fullWidth
+            disabled
+            value={output}
+          />
+        </div>
+      </Box>
+      <br />
+      <Button variant="contained" onClick={() => executeBash()}>
+        Execute
+      </Button>
     </div>
   );
 }
