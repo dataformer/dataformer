@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Button from '@mui/material/Button';
 import logo from "./logo.svg";
 import "./App.css";
 
@@ -21,6 +22,7 @@ function App() {
       <p className="App-intro">
         To get started, edit <code>src/App.js</code> and save to reload.
       </p>
+      <Button variant="contained">Hello World</Button>
     </div>
   );
 }
