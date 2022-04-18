@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import logo from "./logo.svg";
 import "./App.css";
 import Sidebar from "./components/sidebar/Sidebar";
+import Pipeline from "./components/pipeline/Pipeline";
 
 function App() {
   const [input, setInput] = useState("");
@@ -56,6 +57,7 @@ function App() {
         </div>
       </Box>
       <br />
+      <Pipeline />
       <Button variant="contained" onClick={() => executeBash()}>
         Execute
       </Button>
