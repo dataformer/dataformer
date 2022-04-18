@@ -23,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <Typography variant="h2" component="div" gutterBottom>
+      {/* <Typography variant="h2" component="div" gutterBottom>
         Welcome to Dataformer!
       </Typography>
       <Sidebar />
@@ -57,10 +57,11 @@ function App() {
         </div>
       </Box>
       <br />
-      <Pipeline />
       <Button variant="contained" onClick={() => executeBash()}>
         Execute
-      </Button>
+      </Button> */}
+      <Pipeline />
+      
     </div>
   );
 }
