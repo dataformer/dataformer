@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import logo from "./logo.svg";
 import "./App.css";
 import Sidebar from "./components/sidebar/Sidebar";
+import Pipeline from "./components/pipeline/Pipeline";
 
 function App() {
   const [input, setInput] = useState("");
@@ -22,7 +23,7 @@ function App() {
 
   return (
     <div className="App">
-      <Typography variant="h2" component="div" gutterBottom>
+      {/* <Typography variant="h2" component="div" gutterBottom>
         Welcome to Dataformer!
       </Typography>
       <Sidebar />
@@ -58,7 +59,9 @@ function App() {
       <br />
       <Button variant="contained" onClick={() => executeBash()}>
         Execute
-      </Button>
+      </Button> */}
+      <Pipeline />
+      
     </div>
   );
 }
