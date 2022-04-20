@@ -7,6 +7,7 @@ import logo from "./logo.svg";
 import "./App.css";
 import Sidebar from "./components/sidebar/Sidebar";
 import Pipeline from "./components/pipeline/Pipeline";
+import Data from "./components/data/Data";
 
 function App() {
   const [input, setInput] = useState("");
@@ -62,6 +63,8 @@ function App() {
       </Button> */}
       <Pipeline />
       
+
+      <Data></Data>
     </div>
   );
 }
