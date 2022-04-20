@@ -5,6 +5,7 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import logo from "./logo.svg";
 import "./App.css";
+import Sidebar from "./components/sidebar/Sidebar";
 
 function App() {
   const [input, setInput] = useState("");
@@ -24,6 +25,7 @@ function App() {
       <Typography variant="h2" component="div" gutterBottom>
         Welcome to Dataformer!
       </Typography>
+      <Sidebar />
       <Box
         component="form"
         sx={{
