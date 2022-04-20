@@ -12,9 +12,6 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 
 function Pipeline() {
-  // const [input, setInput] = useState("");
-  // const [output, setOutput] = useState("");
-
   const commands = ["Command 1", "Command 2", "Command 3", "Command 4"];
 
   const buttons = ["Edit", "Disable", "Export"];
@@ -67,7 +64,6 @@ function Pipeline() {
             </Card>
           </ListItem>
         ))}
-        {/* <br /> */}
         <Button variant="contained" onClick={() => console.log("Executing...")}>
           Pipeline Execute
         </Button>
