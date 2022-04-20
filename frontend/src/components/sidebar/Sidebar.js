@@ -46,7 +46,7 @@ function Sidebar() {
   ));
 
   return (
-    <Box sx={{ display: "flex" }}>
+    <Box sx={{ display: "flex" }} component="nav">
       <Box sx={{ width: width, flexShrink: 0 }}>
         <Drawer
           variant="permanent"
