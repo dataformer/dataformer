@@ -18,6 +18,8 @@ function App() {
     [500, 500],
   ]);
 
+  const [state, setState] = useState({ data: "This is the state" });
+
   function executeBash() {
     fetch(`/api/v1/execute/${input}`, { method: "POST" })
       .then((response) => response.text())
@@ -38,9 +40,19 @@ function App() {
         </Toolbar>
       </AppBar>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
-        <Sidebar width={widths[0]} enableResize={enableResizeCallbacks[0]} />
-        <Pipeline width={widths[1]} enableResize={enableResizeCallbacks[1]} />
-        <Data />
+        <Sidebar
+          width={widths[0]}
+          enableResize={enableResizeCallbacks[0]}
+          state={state}
+          setState={setState}
+        />
+        <Pipeline
+          width={widths[1]}
+          enableResize={enableResizeCallbacks[1]}
+          state={state}
+          setState={setState}
+        />
+        <Data state={state} setState={setState} />
       </Box>
     </div>
   );
