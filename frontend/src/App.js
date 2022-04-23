@@ -24,7 +24,6 @@ function App() {
 
   return (
     <div className="App">
-      
       {/* <Typography variant="h2" component="div" gutterBottom>
         Welcome to Dataformer!
       </Typography>
@@ -62,7 +61,7 @@ function App() {
       <Button variant="contained" onClick={() => executeBash()}>
         Execute
       </Button> */}
-      <Box sx={{ display: "flex", flexDirection: 'row'}}>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Sidebar />
         <Pipeline />
         <Data />

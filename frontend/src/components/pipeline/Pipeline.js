@@ -1,46 +1,40 @@
-import React, { useEffect, useState } from "react";
-import Grid from "@mui/material/Grid";
+import React from "react";
 import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { Card, CardActionArea, CardActions, CardContent } from "@mui/material";
-import List from "@mui/material/List";
-import ListItem from "@mui/material/ListItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
+import EditIcon from "@mui/icons-material/Edit";
+import DoDisturbIcon from "@mui/icons-material/DoDisturb";
+import IosShareIcon from "@mui/icons-material/IosShare";
 
 function Pipeline() {
-  const commands = ["Command 1", "Command 2", "Command 3", "Command 4"];
+  const commands = [
+    "Command 1",
+    "Command 2",
+    "Command 3",
+    "Command 4",
+    "Command 5",
+    "Command 6",
+  ];
 
-  const buttons = ["Edit", "Disable", "Export"];
+  const buttons = [<EditIcon />, <DoDisturbIcon />, <IosShareIcon />];
 
   return (
-    // <Grid
-    //   container
-    //   spacing={0}
-    //   direction="column"
-    //   alignItems="center"
-    //   justifyContent="center"
-    // >
-    <Box sx={{ width: 1000 }}>
-      {/* <List> */}
+    <Box
+      sx={{
+        width: 500,
+        float: "center",
+      }}
+    >
+      <Box sx={{ maxHeight: 900, overflowY: "scroll" }}>
         {commands.map((command) => (
-          // <ListItem alignItems="flex-start">
-          //   <Typography variant="body2" color="text.secondary">
-          //     {command}
-          //   </Typography>
-
-          // TODO - add scroll
-
-          // .parentDiv {
-          //     height: 300px;
-          //     overflow-y: scroll;
-          // }
           <Card variant="outlined">
-            <CardActionArea sx={{textAlign: "center"}}>
+            <CardActionArea sx={{ textAlign: "center" }}>
               <CardContent>
                 <Typography
                   gutterBottom
@@ -54,6 +48,7 @@ function Pipeline() {
                   variant="body2"
                   color="text.secondary"
                   align="center"
+                  paddingBottom={1}
                 >
                   This is an example command.
                 </Typography>
@@ -63,7 +58,7 @@ function Pipeline() {
                   variant="outlined"
                 />
               </CardContent>
-              <FormControl fullWidth>
+              <FormControl sx={{ width: 200 }}>
                 <InputLabel id="demo-simple-select-label">Type</InputLabel>
                 <Select
                   labelId="demo-simple-select-label"
@@ -83,13 +78,13 @@ function Pipeline() {
               ))}
             </CardActions>
           </Card>
-          // </ListItem>
         ))}
-
+      </Box>
+      <Box sx={{ paddingTop: 2 }}>
         <Button variant="contained" onClick={() => console.log("Executing...")}>
           Pipeline Execute
         </Button>
-      {/* </List> */}
+      </Box>
     </Box>
   );
 }
