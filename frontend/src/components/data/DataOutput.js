@@ -3,7 +3,6 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
 function DataOutput(props) {
-  const [output, setOutput] = useState("");
   return (
     <Box>
       <TextField
@@ -14,7 +13,7 @@ function DataOutput(props) {
         maxRows={12}
         fullWidth
         disabled
-        value={output}
+        value={props.state.data}
       />
     </Box>
   );
