@@ -7,7 +7,7 @@ import TextField from "@mui/material/TextField";
 
 function Data() {
   return (
-    <Box sx={{display: 'flex', flexDirection: 'column', flexGrow: 1}} >
+    <Box sx={{height: "100vh", display: 'flex', flexDirection: 'column', flexGrow: 1, paddingTop:"8px"}} >
       <DataInput/>
       <br/>
       <DataOutput/>
