@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
-function DataInput() {
+function DataInput(props) {
   const [input, setInput] = useState("");
   return (
-    <Box sx={{paddingBottom:"8px"}}>
+    <Box sx={{ paddingBottom: "8px" }}>
       <TextField
         id="input-field"
         label="Input"
@@ -14,7 +14,13 @@ function DataInput() {
         maxRows={12}
         fullWidth
         value={input}
-        onChange={(event) => setInput(event.target.value)}
+        onChange={(event) => {
+          setInput(event.target.value);
+          props.setState({
+            data: "Updated input in state",
+            input: event.target.value,
+          });
+        }}
       />
     </Box>
   );
