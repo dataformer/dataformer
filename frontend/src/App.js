@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import logo from "./logo.svg";
 import "./App.css";
 import Sidebar from "./components/sidebar/Sidebar";
 import Pipeline from "./components/pipeline/Pipeline";
@@ -24,43 +23,13 @@ function App() {
 
   return (
     <div className="App">
-      {/* <Typography variant="h2" component="div" gutterBottom>
-        Welcome to Dataformer!
-      </Typography>
-      <Sidebar />
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "50ch" },
-        }}
-        noValidate
-        autoComplete="off"
-      >
-        <div>
-          <TextField
-            id="input-field"
-            label="Input"
-            multiline
-            minRows={10}
-            fullWidth
-            value={input}
-            onChange={(event) => setInput(event.target.value)}
-          />
-          <TextField
-            id="output-field"
-            label="Output"
-            multiline
-            minRows={10}
-            fullWidth
-            disabled
-            value={output}
-          />
-        </div>
-      </Box>
-      <br />
-      <Button variant="contained" onClick={() => executeBash()}>
-        Execute
-      </Button> */}
+      <AppBar position="static">
+        <Toolbar variant="dense">
+          <Typography variant="h6" color="inherit" component="div">
+            Dataformer
+          </Typography>
+        </Toolbar>
+      </AppBar>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Sidebar />
         <Pipeline />
