@@ -64,7 +64,7 @@ function Sidebar(props) {
       </Box>
       <Box
         sx={{
-          height: "100vh",
+          height: `calc(100vh - 48px)`,
           width: "3px",
           cursor: "col-resize",
           backgroundColor: grey["400"],
