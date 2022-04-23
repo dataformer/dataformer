@@ -9,6 +9,8 @@ import Pipeline from "./components/pipeline/Pipeline";
 import Data from "./components/data/Data";
 import useResize from "./utils/resizing";
 
+import { createState } from "./state/State";
+
 function App() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
@@ -18,7 +20,7 @@ function App() {
     [500, 500],
   ]);
 
-  const [state, setState] = useState({ data: "This is the state" });
+  const [state, setState] = useState(createState([]));
 
   function executeBash() {
     fetch(`/api/v1/execute/${input}`, { method: "POST" })
@@ -54,6 +56,7 @@ function App() {
         />
         <Data state={state} setState={setState} />
       </Box>
+      {state.toString()};
     </div>
   );
 }

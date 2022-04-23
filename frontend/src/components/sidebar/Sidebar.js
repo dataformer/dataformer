@@ -9,6 +9,8 @@ import FindReplaceIcon from "@mui/icons-material/FindReplace";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CachedIcon from "@mui/icons-material/Cached";
 
+import { addCommand, createCommand, CommandCategory } from "../../state/Command";
+
 function Sidebar(props) {
   const commandGroups = [
     {
@@ -28,7 +30,8 @@ function Sidebar(props) {
         {
           name: "Replace",
           icon: <CachedIcon />,
-          callback: () => alert("Replaced something!"),
+          // callback: () => alert("Replaced something!"),
+          callback: () => props.setState(addCommand(props.state, createCommand(CommandCategory.Replace)))
         },
       ],
     },
