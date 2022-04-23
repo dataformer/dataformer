@@ -5,7 +5,7 @@ import Box from "@mui/material/Box";
 function DataInput() {
   const [input, setInput] = useState("");
   return (
-    <Box>
+    <Box sx={{paddingBottom:"8px"}}>
       <TextField
         id="input-field"
         label="Input"
