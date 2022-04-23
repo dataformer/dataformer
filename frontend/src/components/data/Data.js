@@ -7,11 +7,11 @@ import TextField from "@mui/material/TextField";
 
 function Data() {
   return (
-    <div>
-      <DataInput></DataInput>
-      <br />
-      <DataOutput></DataOutput>
-    </div>
+    <Box sx={{display: 'flex', flexDirection: 'column', flexGrow: 1}} >
+      <DataInput/>
+      <br/>
+      <DataOutput/>
+    </Box>
   );
 }
 

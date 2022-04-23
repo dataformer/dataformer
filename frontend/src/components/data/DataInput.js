@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 
 function DataInput() {
   const [input, setInput] = useState("");
   return (
-    <div>
+    <Box>
       <TextField
         id="input-field"
         label="Input"
         multiline
-        minRows={10}
+        minRows={12}
+        maxRows={12}
         fullWidth
         value={input}
         onChange={(event) => setInput(event.target.value)}
       />
-    </div>
+    </Box>
   );
 }
 

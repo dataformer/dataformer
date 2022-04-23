@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import TextField from "@mui/material/TextField";
+import Box from "@mui/material/Box";
 
 function DataOutput(props) {
   const [output, setOutput] = useState("");
   return (
-    <div>
+    <Box>
       <TextField
         id="output-field"
         label="Output"
         multiline
-        minRows={10}
+        minRows={12}
+        maxRows={12}
         fullWidth
         disabled
         value={output}
       />
-    </div>
+    </Box>
   );
 }
 

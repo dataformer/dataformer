@@ -62,10 +62,10 @@ function App() {
       <Button variant="contained" onClick={() => executeBash()}>
         Execute
       </Button> */}
-      <Box sx={{ display: "flex", flexDirection: 'row' }}>
+      <Box sx={{ display: "flex", flexDirection: 'row'}}>
         <Sidebar />
         <Pipeline />
-        <Data/>
+        <Data />
       </Box>
     </div>
   );
