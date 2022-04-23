@@ -3,7 +3,6 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
-import useResize from "../../utils/resizing";
 import { Card, CardActionArea, CardActions, CardContent } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import FormControl from "@mui/material/FormControl";
@@ -14,7 +13,7 @@ import EditIcon from "@mui/icons-material/Edit";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
 import IosShareIcon from "@mui/icons-material/IosShare";
 
-function Pipeline() {
+function Pipeline(props) {
   const commands = [
     "Command 1",
     "Command 2",
@@ -23,7 +22,6 @@ function Pipeline() {
     "Command 5",
     "Command 6",
   ];
-  const [width, enableResize] = useResize(500, 500);
 
   const buttons = [<EditIcon />, <DoDisturbIcon />, <IosShareIcon />];
 
@@ -31,7 +29,7 @@ function Pipeline() {
     <>
       <Box
         sx={{
-          width: width,
+          width: props.width,
           float: "center",
         }}
       >
@@ -100,7 +98,7 @@ function Pipeline() {
           cursor: "col-resize",
           backgroundColor: grey["400"],
         }}
-        onMouseDown={enableResize}
+        onMouseDown={props.enableResize}
       />
     </>
   );

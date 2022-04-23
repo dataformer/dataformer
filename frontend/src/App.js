@@ -7,10 +7,16 @@ import "./App.css";
 import Sidebar from "./components/sidebar/Sidebar";
 import Pipeline from "./components/pipeline/Pipeline";
 import Data from "./components/data/Data";
+import useResize from "./utils/resizing";
 
 function App() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
+  const [widths, enableResizeCallbacks] = useResize([
+    [250, 250],
+    [500, 500],
+    [500, 500],
+  ]);
 
   function executeBash() {
     fetch(`/api/v1/execute/${input}`, { method: "POST" })
@@ -20,6 +26,7 @@ function App() {
         console.log(output);
       });
   }
+  console.log(widths);
 
   return (
     <div className="App">
@@ -31,8 +38,8 @@ function App() {
         </Toolbar>
       </AppBar>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
-        <Sidebar />
-        <Pipeline />
+        <Sidebar width={widths[0]} enableResize={enableResizeCallbacks[0]} />
+        <Pipeline width={widths[1]} enableResize={enableResizeCallbacks[1]} />
         <Data />
       </Box>
     </div>

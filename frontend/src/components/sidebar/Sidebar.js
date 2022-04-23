@@ -4,15 +4,12 @@ import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import SidebarGroup from "./SidebarGroup";
-import useResize from "../../utils/resizing";
 
 import FindReplaceIcon from "@mui/icons-material/FindReplace";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CachedIcon from "@mui/icons-material/Cached";
 
-function Sidebar() {
-  const [width, enableResize] = useResize(250, 250);
-
+function Sidebar(props) {
   const commandGroups = [
     {
       name: "Find/Replace",
@@ -49,13 +46,13 @@ function Sidebar() {
   return (
     <>
       <Box sx={{ display: "flex" }}>
-        <Box sx={{ width: width, flexShrink: 0 }}>
+        <Box sx={{ width: props.width, flexShrink: 0 }}>
           <Drawer
             variant="permanent"
             sx={{
               "& .MuiDrawer-paper": {
                 boxSizing: "border-box",
-                width: width,
+                width: props.width,
                 position: "relative",
               },
             }}
@@ -72,7 +69,7 @@ function Sidebar() {
           cursor: "col-resize",
           backgroundColor: grey["400"],
         }}
-        onMouseDown={enableResize}
+        onMouseDown={props.enableResize}
       />
     </>
   );
