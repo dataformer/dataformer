@@ -41,9 +41,10 @@ function Pipeline(props) {
             paddingLeft: "8px",
             paddingRight: "8px",
           }}
+          justifyContent="space-between"
         >
           {commands.map((command) => (
-            <Card variant="outlined">
+            <Card variant="outlined" sx={{ marginBottom: "8px" }}>
               <Box sx={{ textAlign: "center" }}>
                 <CardContent>
                   <Typography
