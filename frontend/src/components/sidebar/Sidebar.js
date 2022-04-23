@@ -47,21 +47,23 @@ function Sidebar() {
   ));
 
   return (
-    <Box sx={{ display: "flex" }} component="nav">
-      <Box sx={{ width: width, flexShrink: 0 }}>
-        <Drawer
-          variant="permanent"
-          sx={{
-            "& .MuiDrawer-paper": {
-              boxSizing: "border-box",
-              width: width,
-              position: "relative",
-            },
-          }}
-          open
-        >
-          <List>{commandGroupsComponents}</List>
-        </Drawer>
+    <>
+      <Box sx={{ display: "flex" }}>
+        <Box sx={{ width: width, flexShrink: 0 }}>
+          <Drawer
+            variant="permanent"
+            sx={{
+              "& .MuiDrawer-paper": {
+                boxSizing: "border-box",
+                width: width,
+                position: "relative",
+              },
+            }}
+            open
+          >
+            <List>{commandGroupsComponents}</List>
+          </Drawer>
+        </Box>
       </Box>
       <Box
         sx={{
@@ -72,7 +74,7 @@ function Sidebar() {
         }}
         onMouseDown={enableResize}
       />
-    </Box>
+    </>
   );
 }
 

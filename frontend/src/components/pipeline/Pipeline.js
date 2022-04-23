@@ -3,7 +3,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
+import useResize from "../../utils/resizing";
 import { Card, CardActionArea, CardActions, CardContent } from "@mui/material";
+import { grey } from "@mui/material/colors";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 import InputLabel from "@mui/material/InputLabel";
@@ -21,71 +23,86 @@ function Pipeline() {
     "Command 5",
     "Command 6",
   ];
+  const [width, enableResize] = useResize(500, 500);
 
   const buttons = [<EditIcon />, <DoDisturbIcon />, <IosShareIcon />];
 
   return (
-    <Box
-      sx={{
-        width: 500,
-        float: "center",
-      }}
-    >
-      <Box sx={{ maxHeight: 900, overflowY: "scroll" }}>
-        {commands.map((command) => (
-          <Card variant="outlined">
-            <CardActionArea sx={{ textAlign: "center" }}>
-              <CardContent>
-                <Typography
-                  gutterBottom
-                  variant="h5"
-                  component="div"
-                  align="center"
-                >
-                  {command}
-                </Typography>
-                <Typography
-                  variant="body2"
-                  color="text.secondary"
-                  align="center"
-                  paddingBottom={1}
-                >
-                  This is an example command.
-                </Typography>
-                <TextField
-                  id="outlined-basic"
-                  label="Your Regex"
-                  variant="outlined"
-                />
-              </CardContent>
-              <FormControl sx={{ width: 200 }}>
-                <InputLabel id="demo-simple-select-label">Type</InputLabel>
-                <Select
-                  labelId="demo-simple-select-label"
-                  id="demo-simple-select"
-                  label="Type"
-                >
-                  <MenuItem value={0}>Literal String</MenuItem>
-                  <MenuItem value={1}>Regex</MenuItem>
-                </Select>
-              </FormControl>
-            </CardActionArea>
-            <CardActions sx={{ justifyContent: "center" }}>
-              {buttons.map((button) => (
-                <Button size="small" color="primary">
-                  {button}
-                </Button>
-              ))}
-            </CardActions>
-          </Card>
-        ))}
+    <>
+      <Box
+        sx={{
+          width: width,
+          float: "center",
+        }}
+      >
+        <Box sx={{ maxHeight: 900, overflowY: "scroll" }}>
+          {commands.map((command) => (
+            <Card variant="outlined">
+              <CardActionArea sx={{ textAlign: "center" }}>
+                <CardContent>
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    align="center"
+                  >
+                    {command}
+                  </Typography>
+                  <Typography
+                    variant="body2"
+                    color="text.secondary"
+                    align="center"
+                    paddingBottom={1}
+                  >
+                    This is an example command.
+                  </Typography>
+                  <TextField
+                    id="outlined-basic"
+                    label="Your Regex"
+                    variant="outlined"
+                  />
+                </CardContent>
+                <FormControl sx={{ width: 200 }}>
+                  <InputLabel id="demo-simple-select-label">Type</InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    label="Type"
+                  >
+                    <MenuItem value={0}>Literal String</MenuItem>
+                    <MenuItem value={1}>Regex</MenuItem>
+                  </Select>
+                </FormControl>
+              </CardActionArea>
+              <CardActions sx={{ justifyContent: "center" }}>
+                {buttons.map((button) => (
+                  <Button size="small" color="primary">
+                    {button}
+                  </Button>
+                ))}
+              </CardActions>
+            </Card>
+          ))}
+        </Box>
+        <Box sx={{ paddingTop: 2 }}>
+          <Button
+            variant="contained"
+            onClick={() => console.log("Executing...")}
+          >
+            Pipeline Execute
+          </Button>
+        </Box>
       </Box>
-      <Box sx={{ paddingTop: 2 }}>
-        <Button variant="contained" onClick={() => console.log("Executing...")}>
-          Pipeline Execute
-        </Button>
-      </Box>
-    </Box>
+      <Box
+        sx={{
+          height: "100vh",
+          width: "3px",
+          cursor: "col-resize",
+          backgroundColor: grey["400"],
+        }}
+        onMouseDown={enableResize}
+      />
+    </>
   );
 }
 
