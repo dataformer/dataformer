@@ -33,10 +33,18 @@ function Pipeline(props) {
           float: "center",
         }}
       >
-        <Box sx={{ maxHeight: 900, overflowY: "scroll" }}>
+        <Box
+          sx={{
+            maxHeight: 680,
+            overflowY: "scroll",
+            paddingTop: "8px",
+            paddingLeft: "8px",
+            paddingRight: "8px",
+          }}
+        >
           {commands.map((command) => (
             <Card variant="outlined">
-              <CardActionArea sx={{ textAlign: "center" }}>
+              <Box sx={{ textAlign: "center" }}>
                 <CardContent>
                   <Typography
                     gutterBottom
@@ -71,7 +79,7 @@ function Pipeline(props) {
                     <MenuItem value={1}>Regex</MenuItem>
                   </Select>
                 </FormControl>
-              </CardActionArea>
+              </Box>
               <CardActions sx={{ justifyContent: "center" }}>
                 {buttons.map((button) => (
                   <Button size="small" color="primary">
