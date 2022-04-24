@@ -14,11 +14,14 @@ import { createState } from "./state/State";
 function App() {
   const [input, setInput] = useState("");
   const [output, setOutput] = useState("");
-  const [widths, enableResizeCallbacks] = useResize([
-    [250, 250],
-    [500, 500],
-    [500, 500],
-  ]);
+  const { sidebarWidth, pipelineWidth, enableResizeLeft, enableResizeRight } =
+    useResize({
+      sidebarMinWidth: 250,
+      sidebarDefaultWidth: 250,
+      pipelineMinWidth: 300,
+      pipelineDefaultWidth: 500,
+      dataMinWidth: 450,
+    });
 
   const [state, setState] = useState(createState([]));
 
@@ -30,7 +33,6 @@ function App() {
         console.log(output);
       });
   }
-  console.log(widths);
 
   return (
     <div className="App">
@@ -43,14 +45,14 @@ function App() {
       </AppBar>
       <Box sx={{ display: "flex", flexDirection: "row" }}>
         <Sidebar
-          width={widths[0]}
-          enableResize={enableResizeCallbacks[0]}
+          width={sidebarWidth}
+          enableResize={enableResizeLeft}
           state={state}
           setState={setState}
         />
         <Pipeline
-          width={widths[1]}
-          enableResize={enableResizeCallbacks[1]}
+          width={pipelineWidth}
+          enableResize={enableResizeRight}
           state={state}
           setState={setState}
         />
