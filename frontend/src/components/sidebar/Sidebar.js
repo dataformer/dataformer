@@ -9,7 +9,7 @@ import FindReplaceIcon from "@mui/icons-material/FindReplace";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CachedIcon from "@mui/icons-material/Cached";
 
-import { addCommand, createCommand, CommandCategory } from "../../state/Command";
+import { ReplaceCommand } from "../../state/ReplaceCommand";
 
 function Sidebar(props) {
   const commandGroups = [
@@ -17,21 +17,22 @@ function Sidebar(props) {
       name: "Find/Replace",
       icon: <FindReplaceIcon />,
       commands: [
-        {
-          name: "Filter rows",
-          icon: <FilterAltIcon />,
-          callback: () => alert("Filtered rows!"),
-        },
-        {
-          name: "Filter columns",
-          icon: <FilterAltIcon />,
-          callback: () => alert("Filtered colmns!"),
-        },
+        // {
+        //   name: "Filter rows",
+        //   icon: <FilterAltIcon />,
+        //   // callback: () => alert("Filtered rows!"),
+        //   commandType: ReplaceCommand
+        // },
+        // {
+        //   name: "Filter columns",
+        //   icon: <FilterAltIcon />,
+        //   // callback: () => alert("Filtered colmns!"),
+        //   commandType: ReplaceCommand
+        // },
         {
           name: "Replace",
           icon: <CachedIcon />,
-          // callback: () => alert("Replaced something!"),
-          callback: () => props.setState(addCommand(props.state, createCommand(CommandCategory.Replace)))
+          commandType: ReplaceCommand
         },
       ],
     },
@@ -43,6 +44,8 @@ function Sidebar(props) {
       icon={cg.icon}
       commands={cg.commands}
       key={cg.name}
+      state={props.state}
+      setState={props.setState}
     />
   ));
 

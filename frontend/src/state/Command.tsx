@@ -1,11 +1,11 @@
 import { ReplaceCommand } from "./ReplaceCommand";
-import { State } from "./State";
+// import { State } from "./State";
 
-export enum CommandCategory {
-    FilterRows,
-    FilterColumns,
-    Replace
-}
+// export enum CommandCategory {
+//     FilterRows,
+//     FilterColumns,
+//     Replace
+// }
 
 export interface Command {
 
@@ -21,14 +21,4 @@ export interface Command {
 
 }
 
-export function createCommand(category: CommandCategory): Command {
-    if (category === CommandCategory.Replace) {
-        return new ReplaceCommand();
-    } else {
-        throw Error("Unsupported command")
-    }
-}
 
-export function addCommand(currentState: State, newCommand: Command): State {
-    return new State([...currentState.getCommands(), newCommand]);
-}

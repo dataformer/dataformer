@@ -17,6 +17,11 @@ export class State {
         return [];
     }
 
+    public addCommand(newCommand: Command): State {
+        console.log('here!')
+        return new State([...this.getCommands(), newCommand]);
+    }
+
     public equalValue(that: State): boolean {
         this.checkRep();
         return this.commands.every((thisCommand, index) => {
@@ -38,4 +43,3 @@ export class State {
 export function createState(commands: Array<Command>): State {
     return new State(commands);
 }
-
