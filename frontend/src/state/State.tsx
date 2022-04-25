@@ -18,8 +18,6 @@ export class State {
     }
 
     public addCommand(newCommand: Command): State {
-        console.log('here!')
-        console.log('existing commands', this.getCommands());
         return new State([...this.getCommands(), newCommand]);
     }
 

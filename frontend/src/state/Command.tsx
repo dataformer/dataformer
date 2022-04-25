@@ -8,7 +8,12 @@ export interface Command {
     /**
      * @returns whether `this` and `that` are the same command
      */
-    equalValue(that: Command): boolean
+    equalValue(that: Command): boolean;
+
+    /**
+     * @returns a human-readable representation of `this`
+     */
+    toString(): string;
 
 }
 
