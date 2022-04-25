@@ -16,10 +16,7 @@ function DataInput(props) {
         value={input}
         onChange={(event) => {
           setInput(event.target.value);
-          props.setState({
-            data: "Updated input in state",
-            input: event.target.value,
-          });
+          props.setState(props.state.setInputDataText(event.target.value));
         }}
       />
     </Box>

@@ -23,7 +23,7 @@ function App() {
       dataMinWidth: 450,
     });
 
-  const [state, setState] = useState(createState([]));
+  const [state, setState] = useState(createState());
 
   function executeBash() {
     fetch(`/api/v1/execute/${input}`, { method: "POST" })

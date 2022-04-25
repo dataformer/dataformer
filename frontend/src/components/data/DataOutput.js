@@ -13,7 +13,7 @@ function DataOutput(props) {
         maxRows={12}
         fullWidth
         disabled
-        value={props.state.data}
+        value={"CURRENT STATE: \n" + props.state}
       />
     </Box>
   );

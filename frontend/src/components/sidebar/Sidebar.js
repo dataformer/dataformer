@@ -22,17 +22,17 @@ function Sidebar(props) {
         {
           name: "Filter rows",
           icon: <FilterAltIcon />,
-          commandType: FilterRowsCommand
+          commandType: FilterRowsCommand,
         },
         {
           name: "Filter columns",
           icon: <FilterAltIcon />,
-          commandType: FilterColsCommand
+          commandType: FilterColsCommand,
         },
         {
           name: "Replace",
           icon: <CachedIcon />,
-          commandType: ReplaceCommand
+          commandType: ReplaceCommand,
         },
       ],
     },

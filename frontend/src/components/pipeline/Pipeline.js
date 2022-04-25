@@ -14,7 +14,6 @@ import DoDisturbIcon from "@mui/icons-material/DoDisturb";
 import Code from "@mui/icons-material/Code";
 
 function Pipeline(props) {
-
   const buttons = [<EditIcon />, <DoDisturbIcon />, <Code />];
 
   return (

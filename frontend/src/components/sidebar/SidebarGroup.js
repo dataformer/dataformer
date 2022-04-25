@@ -19,7 +19,9 @@ function SidebarGroup(props) {
     return (
       <ListItemButton
         sx={{ pl: 4 }}
-        onClick={() => props.setState(props.state.addCommand(new c.commandType()))}
+        onClick={() =>
+          props.setState(props.state.addCommand(new c.commandType()))
+        }
       >
         {c.icon && <ListItemIcon>{c.icon}</ListItemIcon>}
         <ListItemText primary={c.name} />

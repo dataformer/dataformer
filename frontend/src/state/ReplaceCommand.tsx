@@ -1,41 +1,39 @@
 import { Command } from "./Command";
 
 export class ReplaceCommand implements Command {
+  // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
 
-    // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
+  private readonly label = "Replace";
 
-    private readonly label = "Replace";
+  constructor() {
+    this.checkRep();
+  }
 
-    constructor() {
-        this.checkRep();
-    }
+  /**
+   * @inheritdoc
+   */
+  public getLabel(): string {
+    return this.label;
+  }
 
-    /**
-     * @inheritdoc
-     */
-     public getLabel(): string {
-        return this.label;
-    }
+  /**
+   * @inheritdoc
+   */
+  public generateScript(): string {
+    // TODO - populate script here
+    return "";
+  }
 
-    /**
-     * @inheritdoc
-     */
-    public generateScript(): string {
-        // TODO - populate script here
-        return "";
-    }
+  public equalValue(that: Command): boolean {
+    this.checkRep();
+    return that instanceof ReplaceCommand;
+  }
 
-    public equalValue(that: Command): boolean {
-        this.checkRep();
-        return that instanceof ReplaceCommand;
-    }
+  public toString(): string {
+    this.checkRep();
 
-    public toString(): string {
-        this.checkRep();
+    return `This is a Replace command with script template ${this.generateScript()}`;
+  }
 
-        return `This is a Replace command with script template ${this.generateScript()}`;
-    }
-
-    private checkRep(): void {}
-
+  private checkRep(): void {}
 }

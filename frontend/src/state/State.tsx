@@ -1,44 +1,70 @@
 import { Command } from "./Command";
 
 export class State {
+  private readonly commands: Array<Command>;
+  // TODO - we may eventually incorporate setState but need to worry about React changing the function under the hood
+  // public readonly setState: (() => void) | undefined;
+  private readonly inputDataText: string;
 
-    private readonly commands: Array<Command>;
-    // TODO - we may eventually incorporate setState but need to worry about React changing the function under the hood
-    // public readonly setState: (() => void) | undefined;
+  constructor(commands: Array<Command>, inputDataText: string) {
+    this.commands = commands.map((command) => command);
+    // this.setState = undefined;
+    this.inputDataText = inputDataText;
+    this.checkRep();
+  }
 
-    constructor(commands: Array<Command>) {
-        this.commands = commands.map(command => command);
-        // this.setState = undefined;
+  public getCommands(): Array<Command> {
+    return this.commands;
+  }
 
-        this.checkRep();
-    }
+  public addCommand(newCommand: Command): State {
+    return new State(
+      [...this.getCommands(), newCommand],
+      this.getInputDataText()
+    );
+  }
 
-    public getCommands(): Array<Command> {
-        return this.commands;
-    }
+  public getInputDataText(): string {
+    return this.inputDataText;
+  }
 
-    public addCommand(newCommand: Command): State {
-        return new State([...this.getCommands(), newCommand]);
-    }
+  public setInputDataText(inputDataText: string): State {
+    return new State(this.getCommands(), inputDataText);
+  }
 
-    public equalValue(that: State): boolean {
-        this.checkRep();
-        return this.commands.every((thisCommand, index) => {
-            const thatCommand = that.commands[index];
+  public equalValue(that: State): boolean {
+    this.checkRep();
 
-            return (thatCommand !== undefined) && thisCommand.equalValue(thatCommand);
-        });
-    }
+    var commandsEqual: boolean = this.getCommands().every(
+      (thisCommand, index) => {
+        const thatCommand = that.getCommands()[index];
+        return thatCommand !== undefined && thisCommand.equalValue(thatCommand);
+      }
+    );
+    var inputDataTextEqual: boolean =
+      this.getInputDataText() === that.getInputDataText();
 
-    public toString(): string {
-        this.checkRep();
-        return this.commands.map(command => command.toString()).join(" | ");
-    }
+    return commandsEqual && inputDataTextEqual;
+  }
 
-    private checkRep(): void {}
+  public toString(): string {
+    this.checkRep();
+    var commandsString: string = this.getCommands()
+      .map((command) => command.toString())
+      .join(" | ");
+    var inputDataTextString: string = this.getInputDataText();
+    return (
+      "Commands: " +
+      commandsString +
+      "\n" +
+      "InputDataText: " +
+      inputDataTextString
+    );
+  }
 
+  private checkRep(): void {}
 }
 
-export function createState(commands: Array<Command>): State {
-    return new State(commands);
+export function createState(): State {
+  return new State([], "");
 }
