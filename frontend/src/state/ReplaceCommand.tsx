@@ -24,7 +24,7 @@ export class ReplaceCommand implements Command {
     public toString(): string {
         this.checkRep();
 
-        return `This is a Replace Commands command with script template ${this.generateScript()}`;
+        return `This is a Replace command with script template ${this.generateScript()}`;
     }
 
     private checkRep(): void {}

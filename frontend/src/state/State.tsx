@@ -14,11 +14,12 @@ export class State {
     }
 
     public getCommands(): Array<Command> {
-        return [];
+        return this.commands;
     }
 
     public addCommand(newCommand: Command): State {
         console.log('here!')
+        console.log('existing commands', this.getCommands());
         return new State([...this.getCommands(), newCommand]);
     }
 

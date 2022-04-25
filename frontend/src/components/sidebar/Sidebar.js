@@ -10,6 +10,8 @@ import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import CachedIcon from "@mui/icons-material/Cached";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
+import { FilterRowsCommand } from "../../state/FilterRowsCommand";
+import { FilterColsCommand } from "../../state/FilterColsCommand";
 
 function Sidebar(props) {
   const commandGroups = [
@@ -17,18 +19,16 @@ function Sidebar(props) {
       name: "Find/Replace",
       icon: <FindReplaceIcon />,
       commands: [
-        // {
-        //   name: "Filter rows",
-        //   icon: <FilterAltIcon />,
-        //   // callback: () => alert("Filtered rows!"),
-        //   commandType: ReplaceCommand
-        // },
-        // {
-        //   name: "Filter columns",
-        //   icon: <FilterAltIcon />,
-        //   // callback: () => alert("Filtered colmns!"),
-        //   commandType: ReplaceCommand
-        // },
+        {
+          name: "Filter rows",
+          icon: <FilterAltIcon />,
+          commandType: FilterRowsCommand
+        },
+        {
+          name: "Filter columns",
+          icon: <FilterAltIcon />,
+          commandType: FilterColsCommand
+        },
         {
           name: "Replace",
           icon: <CachedIcon />,

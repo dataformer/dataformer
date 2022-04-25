@@ -1,12 +1,3 @@
-import { ReplaceCommand } from "./ReplaceCommand";
-// import { State } from "./State";
-
-// export enum CommandCategory {
-//     FilterRows,
-//     FilterColumns,
-//     Replace
-// }
-
 export interface Command {
 
     /**
