@@ -4,8 +4,17 @@ export class ReplaceCommand implements Command {
 
     // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
 
+    private readonly label = "Replace";
+
     constructor() {
         this.checkRep();
+    }
+
+    /**
+     * @inheritdoc
+     */
+     public getLabel(): string {
+        return this.label;
     }
 
     /**

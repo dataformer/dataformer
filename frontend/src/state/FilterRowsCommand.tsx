@@ -4,8 +4,17 @@ export class FilterRowsCommand implements Command {
 
     // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
 
+    private readonly label = "Filter Rows";
+
     constructor() {
         this.checkRep();
+    }
+
+    /**
+     * @inheritdoc
+     */
+     public getLabel(): string {
+        return this.label;
     }
 
     /**

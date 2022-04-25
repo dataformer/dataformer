@@ -1,6 +1,11 @@
 export interface Command {
 
     /**
+     * @returns the label of the command
+     */
+    getLabel(): string;
+    
+    /**
      * @returns a script that is executable
      */
     generateScript(): string;

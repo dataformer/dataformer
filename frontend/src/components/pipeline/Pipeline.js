@@ -11,19 +11,11 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import EditIcon from "@mui/icons-material/Edit";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
-import IosShareIcon from "@mui/icons-material/IosShare";
+import Code from "@mui/icons-material/Code";
 
 function Pipeline(props) {
-  const commands = [
-    "Command 1",
-    "Command 2",
-    "Command 3",
-    "Command 4",
-    "Command 5",
-    "Command 6",
-  ];
 
-  const buttons = [<EditIcon />, <DoDisturbIcon />, <IosShareIcon />];
+  const buttons = [<EditIcon />, <DoDisturbIcon />, <Code />];
 
   return (
     <>
@@ -46,7 +38,7 @@ function Pipeline(props) {
           }}
           justifyContent="space-between"
         >
-          {commands.map((command) => (
+          {props.state.getCommands().map((command) => (
             <Card variant="outlined" sx={{ marginBottom: "8px" }}>
               <Box sx={{ textAlign: "center" }}>
                 <CardContent>
@@ -56,7 +48,7 @@ function Pipeline(props) {
                     component="div"
                     align="center"
                   >
-                    {command}
+                    {command.label}
                   </Typography>
                   <Typography
                     variant="body2"
