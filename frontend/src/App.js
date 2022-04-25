@@ -43,7 +43,13 @@ function App() {
           </Typography>
         </Toolbar>
       </AppBar>
-      <Box sx={{ display: "flex", flexDirection: "row" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "row",
+          maxHeight: "calc(100vh - 48px)",
+        }}
+      >
         <Sidebar
           width={sidebarWidth}
           enableResize={enableResizeLeft}
@@ -58,7 +64,7 @@ function App() {
         />
         <Data state={state} setState={setState} />
       </Box>
-      {state.toString()};
+      {/* {state.toString()}; */}
     </div>
   );
 }

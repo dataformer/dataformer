@@ -31,15 +31,18 @@ function Pipeline(props) {
         sx={{
           width: props.width,
           float: "center",
+          maxHeight: "calc(100vh - 48px)",
+          display: "flex",
+          flexDirection: "column",
         }}
       >
         <Box
           sx={{
-            maxHeight: 680,
             overflowY: "scroll",
             paddingTop: "8px",
             paddingLeft: "8px",
             paddingRight: "8px",
+            flexGrow: "1",
           }}
           justifyContent="space-between"
         >
@@ -91,7 +94,7 @@ function Pipeline(props) {
             </Card>
           ))}
         </Box>
-        <Box sx={{ paddingTop: 2 }}>
+        <Box sx={{ paddingTop: 2, paddingBottom: 2 }}>
           <Button
             variant="contained"
             onClick={() => props.setState({ data: "This is new state" })}

@@ -7,7 +7,7 @@ function Data(props) {
   return (
     <Box
       sx={{
-        height: "100vh",
+        maxHeight: "calc(100vh - 48px)",
         display: "flex",
         flexDirection: "column",
         flexGrow: 1,
