@@ -86,10 +86,7 @@ function Pipeline(props) {
           ))}
         </Box>
         <Box sx={{ paddingTop: 2, paddingBottom: 2 }}>
-          <Button
-            variant="contained"
-            onClick={() => props.setState({ data: "This is new state" })}
-          >
+          <Button variant="contained" onClick={() => props.executeBash()}>
             Pipeline Execute
           </Button>
         </Box>

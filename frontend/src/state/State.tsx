@@ -5,11 +5,17 @@ export class State {
   // TODO - we may eventually incorporate setState but need to worry about React changing the function under the hood
   // public readonly setState: (() => void) | undefined;
   private readonly inputDataText: string;
+  private readonly outputDataText: string;
 
-  constructor(commands: Array<Command>, inputDataText: string) {
+  constructor(
+    commands: Array<Command>,
+    inputDataText: string,
+    outputDataText: string
+  ) {
     this.commands = commands.map((command) => command);
     // this.setState = undefined;
     this.inputDataText = inputDataText;
+    this.outputDataText = outputDataText;
     this.checkRep();
   }
 
@@ -20,8 +26,19 @@ export class State {
   public addCommand(newCommand: Command): State {
     return new State(
       [...this.getCommands(), newCommand],
-      this.getInputDataText()
+      this.getInputDataText(),
+      this.getOutputDataText()
     );
+  }
+
+  public parseCommandSequence(): string {
+    var commandsString: string = this.getCommands()
+      .map((command) => command.toString())
+      .join(" | ");
+    commandsString = "grep h"; // TODO: This is hardcoded. Remove once commands are implemented
+    var fullCommand: string =
+      "echo " + this.getInputDataText() + " | " + commandsString;
+    return fullCommand;
   }
 
   public getInputDataText(): string {
@@ -29,7 +46,23 @@ export class State {
   }
 
   public setInputDataText(inputDataText: string): State {
-    return new State(this.getCommands(), inputDataText);
+    return new State(
+      this.getCommands(),
+      inputDataText,
+      this.getOutputDataText()
+    );
+  }
+
+  public getOutputDataText(): string {
+    return this.outputDataText;
+  }
+
+  public setOutputDataText(outputDataText: string): State {
+    return new State(
+      this.getCommands(),
+      this.getInputDataText(),
+      outputDataText
+    );
   }
 
   public equalValue(that: State): boolean {
@@ -43,8 +76,9 @@ export class State {
     );
     var inputDataTextEqual: boolean =
       this.getInputDataText() === that.getInputDataText();
-
-    return commandsEqual && inputDataTextEqual;
+    var outputDataTextEqual: boolean =
+      this.getOutputDataText() === that.getOutputDataText();
+    return commandsEqual && inputDataTextEqual && outputDataTextEqual;
   }
 
   public toString(): string {
@@ -53,12 +87,15 @@ export class State {
       .map((command) => command.toString())
       .join(" | ");
     var inputDataTextString: string = this.getInputDataText();
+    var outputDataTextString: string = this.getOutputDataText();
+
     return (
       "Commands: " +
       commandsString +
-      "\n" +
-      "InputDataText: " +
-      inputDataTextString
+      "\nInputDataText: " +
+      inputDataTextString +
+      "\nOutputDataText: " +
+      outputDataTextString
     );
   }
 
@@ -66,5 +103,5 @@ export class State {
 }
 
 export function createState(): State {
-  return new State([], "");
+  return new State([], "", "");
 }
