@@ -1,6 +1,9 @@
 aniso8601==9.0.1 \
     --hash=sha256:1d2b7ef82963909e93c4f24ce48d4de9e66009a21bf1c1e1c85bdd0812fe412f \
     --hash=sha256:72e3117667eedf66951bb2d93f4296a56b94b078a8a95905a052611fb3f1b973
+astunparse==1.6.3; python_version < "3.9" and python_version >= "3.6" \
+    --hash=sha256:c2652417f2c8b5bb325c885ae329bdf3f86424075c4fd1a128674bc6fba4b8e8 \
+    --hash=sha256:5ad93a8456f0d084c3456d059fd9a92cce667963232cbf763eac3bc5b7940872
 click==8.0.4; python_version >= "3.6" \
     --hash=sha256:6a7a62563bbfabfda3a38f3023a1db4a35978c0abd76f6c9605ecd6554d6d9b1 \
     --hash=sha256:8458d7b1287c5fb128c90e23381cf99dcde74beaf6c7ff6384ce84d6fe090adb
@@ -63,10 +66,13 @@ markupsafe==2.1.0; python_version >= "3.7" \
     --hash=sha256:e6f7f3f41faffaea6596da86ecc2389672fa949bd035251eab26dc6697451d05 \
     --hash=sha256:b8811d48078d1cf2a6863dafb896e68406c5f513048451cd2ded0473133473c7 \
     --hash=sha256:80beaf63ddfbc64a0452b841d8036ca0611e049650e20afcb882f5d3c266d65f
+pypyp==1.0.0; python_version >= "3.6" \
+    --hash=sha256:da86834d72a772e311ca5a066ec1c2d85cbea0284417de8581fb49ccd0d9b883 \
+    --hash=sha256:10006dc8bbd9de0dbdd957a892f3232771b9030846f5c18af0a750743dd1f6ac
 pytz==2021.3 \
     --hash=sha256:3672058bc3453457b622aab7a1c3bfd5ab0bdae451512f6cf25f64ed37f5b87c \
     --hash=sha256:acad2d8b20a1af07d4e4c9d2e9285c5ed9104354062f275f3fcd88dcef4f1326
-six==1.16.0; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" \
+six==1.16.0; python_version >= "3.6" and python_full_version < "3.0.0" and python_version < "3.9" or python_version < "3.9" and python_version >= "3.6" and python_full_version >= "3.3.0" \
     --hash=sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254 \
     --hash=sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926
 werkzeug==2.0.3; python_version >= "3.6" \
