@@ -1,13 +1,24 @@
 import React from "react";
 import { Command } from "./Command";
 import FilterRowsCommandContent from "../components/pipeline/commands/FilterRowsCommandContent";
+interface FilterRowsCommandArguments {
+  separator: string;
+  regEx: string;
+}
 
 export class FilterRowsCommand implements Command {
-  // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
-
   private readonly label = "Filter Rows";
+  private arguments: FilterRowsCommandArguments = {
+    separator: "",
+    regEx: "",
+  };
   private readonly component = (
-    <FilterRowsCommandContent label={this.label} />
+    <FilterRowsCommandContent
+      label={this.label}
+      onArgumentsChange={(newArguments: FilterRowsCommandArguments) =>
+        (this.arguments = newArguments)
+      }
+    />
   );
 
   constructor() {
@@ -32,8 +43,7 @@ export class FilterRowsCommand implements Command {
    * @inheritdoc
    */
   public generateScript(): string {
-    // TODO - populate script here
-    return "";
+    return `awk -F'${this.arguments.separator}' '{ if ($0 == ${this.arguments.regEx}) { print } }'`;
   }
 
   public equalValue(that: Command): boolean {

@@ -1,12 +1,25 @@
 import React from "react";
 import ReplaceCommandContent from "../components/pipeline/commands/ReplaceCommandContent";
 import { Command } from "./Command";
+interface ReplaceCommandArguments {
+  find: string;
+  replace: string;
+}
 
 export class ReplaceCommand implements Command {
-  // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
-
   private readonly label = "Replace";
-  private readonly component = (<ReplaceCommandContent label={this.label} />);
+  private arguments: ReplaceCommandArguments = {
+    find: "",
+    replace: "",
+  };
+  private readonly component = (
+    <ReplaceCommandContent
+      label={this.label}
+      onArgumentsChange={(newArguments: ReplaceCommandArguments) =>
+        (this.arguments = newArguments)
+      }
+    />
+  );
 
   constructor() {
     this.checkRep();
@@ -30,8 +43,7 @@ export class ReplaceCommand implements Command {
    * @inheritdoc
    */
   public generateScript(): string {
-    // TODO - populate script here
-    return "";
+    return `sed 's/${this.arguments.find}/${this.arguments.replace}/g'`;
   }
 
   public equalValue(that: Command): boolean {

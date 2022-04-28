@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { CardContent } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
+import { Box } from "@mui/system";
 
 function FilterRowsCommandContent(props) {
+  const [separator, setSeparator] = useState("");
+  const [regEx, setRegEx] = useState("");
+
+  useEffect(() => {
+    props.onArgumentsChange({
+      separator,
+      regEx,
+    });
+  }, [separator, regEx]);
+
   return (
     <>
       <CardContent>
@@ -20,21 +27,36 @@ function FilterRowsCommandContent(props) {
           align="center"
           paddingBottom={1}
         >
-          This is an example filter rows command.
+          Filter rows by specifying a separator and a regular expression to
+          match.
         </Typography>
-        <TextField id="outlined-basic" label="Your Regex" variant="outlined" />
-      </CardContent>
-      <FormControl sx={{ width: 200 }}>
-        <InputLabel id="demo-simple-select-label">Type</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="Type"
+        <Box
+          sx={{
+            display: "flex",
+            flaxWrap: "wrap",
+            flexDirection: "row",
+            justifyContent: "center",
+            width: "100%",
+            gap: "8px",
+          }}
         >
-          <MenuItem value={0}>Literal String</MenuItem>
-          <MenuItem value={1}>Regex</MenuItem>
-        </Select>
-      </FormControl>
+          <TextField
+            id="outlined-basic"
+            label="Separator"
+            variant="outlined"
+            sx={{
+              width: "10ch",
+            }}
+            onChange={(event) => setSeparator(event.target.value)}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Regular Expression"
+            variant="outlined"
+            onChange={(event) => setRegEx(event.target.value)}
+          />
+        </Box>
+      </CardContent>
     </>
   );
 }

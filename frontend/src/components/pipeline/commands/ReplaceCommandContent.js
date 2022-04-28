@@ -1,13 +1,20 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { CardContent } from "@mui/material";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
+import { Box } from "@mui/system";
 
 function ReplaceCommandContent(props) {
+  const [find, setFind] = useState("");
+  const [replace, setReplace] = useState("");
+
+  useEffect(() => {
+    props.onArgumentsChange({
+      find,
+      replace,
+    });
+  }, [find, replace]);
+
   return (
     <>
       <CardContent>
@@ -20,21 +27,30 @@ function ReplaceCommandContent(props) {
           align="center"
           paddingBottom={1}
         >
-          This is an example replace command.
+          Find a regular expression and replace it with a literal string.
         </Typography>
-        <TextField id="outlined-basic" label="Your Regex" variant="outlined" />
-      </CardContent>
-      <FormControl sx={{ width: 200 }}>
-        <InputLabel id="demo-simple-select-label">Type</InputLabel>
-        <Select
-          labelId="demo-simple-select-label"
-          id="demo-simple-select"
-          label="Type"
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            width: "100%",
+            gap: "8px",
+          }}
         >
-          <MenuItem value={0}>Literal String</MenuItem>
-          <MenuItem value={1}>Regex</MenuItem>
-        </Select>
-      </FormControl>
+          <TextField
+            id="outlined-basic"
+            label="Find"
+            variant="outlined"
+            onChange={(event) => setFind(event.target.value)}
+          />
+          <TextField
+            id="outlined-basic"
+            label="Replace"
+            variant="outlined"
+            onChange={(event) => setReplace(event.target.value)}
+          />
+        </Box>
+      </CardContent>
     </>
   );
 }
