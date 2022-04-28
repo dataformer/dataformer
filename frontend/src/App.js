@@ -12,8 +12,6 @@ import useResize from "./utils/resizing";
 import { createState } from "./state/State";
 
 function App() {
-  const [input, setInput] = useState("");
-  const [output, setOutput] = useState("");
   const { sidebarWidth, pipelineWidth, enableResizeLeft, enableResizeRight } =
     useResize({
       sidebarMinWidth: 250,
@@ -23,14 +21,14 @@ function App() {
       dataMinWidth: 450,
     });
 
-  const [state, setState] = useState(createState([]));
+  const [state, setState] = useState(createState());
 
   function executeBash() {
-    fetch(`/api/v1/execute/${input}`, { method: "POST" })
+    let bashCommand = encodeURIComponent(state.parseCommandSequence());
+    fetch(`/api/v1/execute/${bashCommand}`, { method: "POST" })
       .then((response) => response.text())
       .then((output) => {
-        setOutput(output.trim());
-        console.log(output);
+        setState(state.setOutputDataText(output));
       });
   }
 
@@ -61,10 +59,10 @@ function App() {
           enableResize={enableResizeRight}
           state={state}
           setState={setState}
+          executeBash={executeBash}
         />
         <Data state={state} setState={setState} />
       </Box>
-      {/* {state.toString()}; */}
     </div>
   );
 }

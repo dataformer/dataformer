@@ -6,9 +6,13 @@ from flask_restful import Resource
 
 class ExecuteResource(Resource):
     def post(self, command):
-        output = subprocess.run(
-            command.split(" "), stdout=subprocess.PIPE
+        print()
+        print("[DEBUG] Executing command:")
+        print(command)
+        print()
+        command_output = subprocess.run(
+            command, stdout=subprocess.PIPE, shell=True
         ).stdout.decode("utf-8")
-        response = make_response(output, 200)
+        response = make_response(command_output, 200)
         response.mimetype = "text/plain"
         return response

@@ -39,42 +39,7 @@ function Pipeline(props) {
         >
           {props.state.getCommands().map((command) => (
             <Card variant="outlined" sx={{ marginBottom: "8px" }}>
-              <Box sx={{ textAlign: "center" }}>
-                <CardContent>
-                  <Typography
-                    gutterBottom
-                    variant="h5"
-                    component="div"
-                    align="center"
-                  >
-                    {command.label}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="text.secondary"
-                    align="center"
-                    paddingBottom={1}
-                  >
-                    This is an example command.
-                  </Typography>
-                  <TextField
-                    id="outlined-basic"
-                    label="Your Regex"
-                    variant="outlined"
-                  />
-                </CardContent>
-                <FormControl sx={{ width: 200 }}>
-                  <InputLabel id="demo-simple-select-label">Type</InputLabel>
-                  <Select
-                    labelId="demo-simple-select-label"
-                    id="demo-simple-select"
-                    label="Type"
-                  >
-                    <MenuItem value={0}>Literal String</MenuItem>
-                    <MenuItem value={1}>Regex</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+              <Box sx={{ textAlign: "center" }}>{command.getComponent()}</Box>
               <CardActions sx={{ justifyContent: "center" }}>
                 {buttons.map((button) => (
                   <Button size="small" color="primary">
@@ -86,10 +51,7 @@ function Pipeline(props) {
           ))}
         </Box>
         <Box sx={{ paddingTop: 2, paddingBottom: 2 }}>
-          <Button
-            variant="contained"
-            onClick={() => props.setState({ data: "This is new state" })}
-          >
+          <Button variant="contained" onClick={() => props.executeBash()}>
             Pipeline Execute
           </Button>
         </Box>
