@@ -2,12 +2,24 @@ import React from "react";
 import { Command } from "./Command";
 import FilterColsCommandContent from "../components/pipeline/commands/FilterColsCommandContent";
 
-export class FilterColsCommand implements Command {
-  // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
+interface FilterColsCommandArguments {
+  separator: string;
+  columns: string;
+}
 
+export class FilterColsCommand implements Command {
   private readonly label = "Filter Columns";
+  private arguments: FilterColsCommandArguments = {
+    separator: "",
+    columns: "",
+  };
   private readonly component = (
-    <FilterColsCommandContent label={this.label} />
+    <FilterColsCommandContent
+      label={this.label}
+      onArgumentsChange={(newArguments: FilterColsCommandArguments) =>
+        (this.arguments = newArguments)
+      }
+    />
   );
 
   constructor() {
@@ -24,7 +36,7 @@ export class FilterColsCommand implements Command {
   /**
    * @inheritdoc
    */
-  public getComponent() {
+  public getComponent(): JSX.Element {
     return this.component;
   }
 
@@ -32,8 +44,9 @@ export class FilterColsCommand implements Command {
    * @inheritdoc
    */
   public generateScript(): string {
-    // TODO - populate script here
-    return "";
+    return (
+      "cut -d " + this.arguments.separator + " -f " + this.arguments.columns
+    );
   }
 
   public equalValue(that: Command): boolean {
