@@ -33,11 +33,10 @@ export class State {
 
   public parseCommandSequence(): string {
     var commandsString: string = this.getCommands()
-      .map((command) => command.toString())
+      .map((command) => "{ " + command.generateScript() + "\n}")
       .join(" | ");
-    commandsString = "grep h"; // TODO: This is hardcoded. Remove once commands are implemented
     var fullCommand: string =
-      "echo " + this.getInputDataText() + " | " + commandsString;
+      "printf " + "'" + this.getInputDataText() + "' | " + commandsString;
     return fullCommand;
   }
 
@@ -84,7 +83,7 @@ export class State {
   public toString(): string {
     this.checkRep();
     var commandsString: string = this.getCommands()
-      .map((command) => command.toString())
+      .map((command) => "{" + command.toString() + "}")
       .join(" | ");
     var inputDataTextString: string = this.getInputDataText();
     var outputDataTextString: string = this.getOutputDataText();

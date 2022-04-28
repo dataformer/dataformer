@@ -24,7 +24,7 @@ function App() {
   const [state, setState] = useState(createState());
 
   function executeBash() {
-    let bashCommand = state.parseCommandSequence();
+    let bashCommand = encodeURIComponent(state.parseCommandSequence());
     fetch(`/api/v1/execute/${bashCommand}`, { method: "POST" })
       .then((response) => response.text())
       .then((output) => {
