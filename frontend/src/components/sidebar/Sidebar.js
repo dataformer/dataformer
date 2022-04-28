@@ -5,13 +5,16 @@ import Drawer from "@mui/material/Drawer";
 import List from "@mui/material/List";
 import SidebarGroup from "./SidebarGroup";
 
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import FindReplaceIcon from "@mui/icons-material/FindReplace";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
+import FormatLineSpacingIcon from "@mui/icons-material/FormatLineSpacing";
 import CachedIcon from "@mui/icons-material/Cached";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
 import { FilterColsCommand } from "../../state/FilterColsCommand";
+import { WrapCommand } from "../../state/WrapCommand";
 
 function Sidebar(props) {
   const commandGroups = [
@@ -33,6 +36,17 @@ function Sidebar(props) {
           name: "Replace",
           icon: <CachedIcon />,
           commandType: ReplaceCommand,
+        },
+      ],
+    },
+    {
+      name: "Advanced commands",
+      icon: <AutoAwesomeIcon />,
+      commands: [
+        {
+          name: "Wrap lines",
+          icon: <FormatLineSpacingIcon />,
+          commandType: WrapCommand,
         },
       ],
     },

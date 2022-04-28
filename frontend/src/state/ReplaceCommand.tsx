@@ -1,9 +1,12 @@
+import React from "react";
+import ReplaceCommandContent from "../components/pipeline/commands/ReplaceCommandContent";
 import { Command } from "./Command";
 
 export class ReplaceCommand implements Command {
   // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
 
   private readonly label = "Replace";
+  private readonly component = (<ReplaceCommandContent label={this.label} />);
 
   constructor() {
     this.checkRep();
@@ -14,6 +17,13 @@ export class ReplaceCommand implements Command {
    */
   public getLabel(): string {
     return this.label;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public getComponent(): JSX.Element {
+    return this.component;
   }
 
   /**

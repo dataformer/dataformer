@@ -1,9 +1,14 @@
+import React from "react";
 import { Command } from "./Command";
+import FilterColsCommandContent from "../components/pipeline/commands/FilterColsCommandContent";
 
 export class FilterColsCommand implements Command {
   // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
 
   private readonly label = "Filter Columns";
+  private readonly component = (
+    <FilterColsCommandContent label={this.label} />
+  );
 
   constructor() {
     this.checkRep();
@@ -14,6 +19,13 @@ export class FilterColsCommand implements Command {
    */
   public getLabel(): string {
     return this.label;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public getComponent() {
+    return this.component;
   }
 
   /**

@@ -5,6 +5,11 @@ export interface Command {
   getLabel(): string;
 
   /**
+   * @returns the React component forming the body of the command
+   */
+  getComponent(): JSX.Element;
+
+  /**
    * @returns a script that is executable
    */
   generateScript(): string;
