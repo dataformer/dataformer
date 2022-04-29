@@ -8,7 +8,7 @@ from . import api as resources
 def init_api(app):
     api = Api(app)
 
-    api.add_resource(resources.ExecuteResource, "/api/v1/execute/<string:command>")
+    api.add_resource(resources.ExecuteResource, "/api/v1/execute/")
 
 
 def create_app():

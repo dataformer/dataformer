@@ -33,10 +33,15 @@ export class State {
 
   public parseCommandSequence(): string {
     var commandsString: string = this.getCommands()
-      .map((command) => "{ " + command.generateScript() + "\n}")
-      .join(" | ");
+      .map((command) => command.generateScript())
+      .join("\n");
     var fullCommand: string =
-      "printf " + "'" + this.getInputDataText() + "' | " + commandsString;
+      "text = " +
+      '"""' +
+      this.getInputDataText() +
+      '"""\n' +
+      commandsString +
+      "\nprint(text)";
     return fullCommand;
   }
 
