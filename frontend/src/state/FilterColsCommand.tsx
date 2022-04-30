@@ -21,9 +21,17 @@ export class FilterColsCommand implements Command {
       }
     />
   );
+  private readonly id = Math.floor(Math.random() * 100000);
 
   constructor() {
     this.checkRep();
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public getId(): number {
+    return this.id;
   }
 
   /**
@@ -81,7 +89,7 @@ text = filter_cols(text)
 
   public equalValue(that: Command): boolean {
     this.checkRep();
-    return that instanceof FilterColsCommand;
+    return this.getId() === that.getId();
   }
 
   public toString(): string {

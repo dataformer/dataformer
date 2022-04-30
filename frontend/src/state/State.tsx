@@ -30,6 +30,16 @@ export class State {
       this.getOutputDataText()
     );
   }
+  public removeCommand(commandId: number): State {
+    var newCommands: Array<Command> = this.getCommands().filter(
+      (c) => c.getId() !== commandId
+    );
+    return new State(
+      newCommands,
+      this.getInputDataText(),
+      this.getOutputDataText()
+    );
+  }
 
   public parseCommandSequence(): string {
     var commandsString: string = this.getCommands()

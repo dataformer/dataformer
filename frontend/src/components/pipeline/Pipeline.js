@@ -5,11 +5,9 @@ import { Card, CardActions, CardContent } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import EditIcon from "@mui/icons-material/Edit";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
-import Code from "@mui/icons-material/Code";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 function Pipeline(props) {
-  const buttons = [<EditIcon />, <DoDisturbIcon />, <Code />];
-
   return (
     <>
       <Box
@@ -32,14 +30,29 @@ function Pipeline(props) {
           justifyContent="space-between"
         >
           {props.state.getCommands().map((command) => (
-            <Card variant="outlined" sx={{ marginBottom: "8px" }}>
+            <Card
+              variant="outlined"
+              sx={{ marginBottom: "8px" }}
+              key={command.getId()}
+            >
               <Box sx={{ textAlign: "center" }}>{command.getComponent()}</Box>
               <CardActions sx={{ justifyContent: "center" }}>
-                {buttons.map((button) => (
-                  <Button size="small" color="primary">
-                    {button}
-                  </Button>
-                ))}
+                <Button size="small" color="primary">
+                  {<EditIcon />}
+                </Button>
+                <Button size="small" color="primary">
+                  {<DoDisturbIcon />}
+                </Button>
+                <Button
+                  size="small"
+                  color="primary"
+                  onClick={() =>
+                    props.setState(props.state.removeCommand(command.getId()))
+                  }
+                >
+                  {<DeleteIcon />}
+                  ID: {command.getId()}
+                </Button>
               </CardActions>
             </Card>
           ))}

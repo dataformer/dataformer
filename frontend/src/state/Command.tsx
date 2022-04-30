@@ -5,6 +5,11 @@ export interface Command {
   getLabel(): string;
 
   /**
+   * @returns the unique id of the command
+   */
+  getId(): number;
+
+  /**
    * @returns the React component forming the body of the command
    */
   getComponent(): JSX.Element;
