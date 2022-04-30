@@ -42,8 +42,15 @@ export class ReplaceCommand implements Command {
   /**
    * @inheritdoc
    */
-  public generateScript(): string {
-    return `sed 's/${this.arguments.find}/${this.arguments.replace}/g'`;
+   public generateScript(): string {
+    return `
+import re
+def replace(text):
+
+    return re.sub(${this.arguments.find}, ${this.arguments.replace}, text)
+    
+text = replace(text)
+`;
   }
 
   public equalValue(that: Command): boolean {

@@ -42,8 +42,20 @@ export class FilterRowsCommand implements Command {
   /**
    * @inheritdoc
    */
-  public generateScript(): string {
-    return `awk -F'${this.arguments.separator}' '{ if ($0 == ${this.arguments.regEx}) { print } }'`;
+   public generateScript(): string {
+    return `
+import re
+
+def filter_rows(text):
+    
+  rows = text.split(${this.arguments.separator})
+   
+  output = [row for row in rows if re.search(${this.arguments.regEx}) is not None]
+
+  return """\n""".join(rows)
+    
+text = filter_rows(text)
+`;
   }
 
   public equalValue(that: Command): boolean {
