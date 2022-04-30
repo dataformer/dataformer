@@ -5,12 +5,9 @@ import { Card, CardActions, CardContent } from "@mui/material";
 import { grey } from "@mui/material/colors";
 import EditIcon from "@mui/icons-material/Edit";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
-import Code from "@mui/icons-material/Code";
 import DeleteIcon from "@mui/icons-material/Delete";
 
 function Pipeline(props) {
-  // const buttons = [<EditIcon />, <DoDisturbIcon />, <Code />];
-
   return (
     <>
       <Box
@@ -46,10 +43,6 @@ function Pipeline(props) {
                 <Button size="small" color="primary">
                   {<DoDisturbIcon />}
                 </Button>
-                <Button size="small" color="primary">
-                  {<Code />}
-                  {command.getId()}
-                </Button>
                 <Button
                   size="small"
                   color="primary"
@@ -58,6 +51,7 @@ function Pipeline(props) {
                   }
                 >
                   {<DeleteIcon />}
+                  ID: {command.getId()}
                 </Button>
               </CardActions>
             </Card>

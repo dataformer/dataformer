@@ -21,7 +21,7 @@ export class FilterColsCommand implements Command {
       }
     />
   );
-  private readonly id = Math.floor(Math.random() * 100);
+  private readonly id = Math.floor(Math.random() * 100000);
 
   constructor() {
     this.checkRep();
@@ -89,7 +89,7 @@ text = filter_cols(text)
 
   public equalValue(that: Command): boolean {
     this.checkRep();
-    return that instanceof FilterColsCommand && Number(this.getId())===Number(that.getId());
+    return this.getId() === that.getId();
   }
 
   public toString(): string {

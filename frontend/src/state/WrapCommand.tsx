@@ -20,13 +20,13 @@ export class WrapCommand implements Command {
       }
     />
   );
-  private readonly id = Math.floor(Math.random() * 100);
+  private readonly id = Math.floor(Math.random() * 100000);
 
   constructor() {
     this.checkRep();
   }
 
-    /**
+  /**
    * @inheritdoc
    */
   public getId(): number {
@@ -107,7 +107,7 @@ text = wrap_command(text)
 
   public equalValue(that: Command): boolean {
     this.checkRep();
-    return that instanceof WrapCommand;
+    return this.getId() === that.getId();
   }
 
   public toString(): string {

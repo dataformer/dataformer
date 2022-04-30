@@ -1,6 +1,7 @@
 import React from "react";
 import { Command } from "./Command";
 import FilterRowsCommandContent from "../components/pipeline/commands/FilterRowsCommandContent";
+
 interface FilterRowsCommandArguments {
   separator: string;
   regEx: string;
@@ -20,10 +21,9 @@ export class FilterRowsCommand implements Command {
       }
     />
   );
-  private readonly id; 
+  private readonly id = Math.floor(Math.random() * 100000);
 
   constructor() {
-    this.id = Math.floor(Math.random() * 100);
     this.checkRep();
   }
 
@@ -51,7 +51,7 @@ export class FilterRowsCommand implements Command {
   /**
    * @inheritdoc
    */
-   public generateScript(): string {
+  public generateScript(): string {
     return `
 import re
 
@@ -69,7 +69,7 @@ text = filter_rows(text)
 
   public equalValue(that: Command): boolean {
     this.checkRep();
-    return that instanceof FilterRowsCommand;
+    return this.getId() === that.getId();
   }
 
   public toString(): string {

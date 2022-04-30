@@ -1,6 +1,7 @@
 import React from "react";
 import ReplaceCommandContent from "../components/pipeline/commands/ReplaceCommandContent";
 import { Command } from "./Command";
+
 interface ReplaceCommandArguments {
   find: string;
   replace: string;
@@ -20,19 +21,18 @@ export class ReplaceCommand implements Command {
       }
     />
   );
-  private readonly id = Math.floor(Math.random() * 100);
+  private readonly id = Math.floor(Math.random() * 100000);
 
   constructor() {
     this.checkRep();
   }
 
-    /**
+  /**
    * @inheritdoc
    */
   public getId(): number {
     return this.id;
   }
-
 
   /**
    * @inheritdoc
@@ -51,7 +51,7 @@ export class ReplaceCommand implements Command {
   /**
    * @inheritdoc
    */
-   public generateScript(): string {
+  public generateScript(): string {
     return `
 import re
 def replace(text):
@@ -64,7 +64,7 @@ text = replace(text)
 
   public equalValue(that: Command): boolean {
     this.checkRep();
-    return that instanceof ReplaceCommand;
+    return this.getId() === that.getId();
   }
 
   public toString(): string {
