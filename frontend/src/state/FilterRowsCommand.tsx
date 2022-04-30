@@ -20,9 +20,18 @@ export class FilterRowsCommand implements Command {
       }
     />
   );
+  private readonly id; 
 
   constructor() {
+    this.id = Math.floor(Math.random() * 100);
     this.checkRep();
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public getId(): number {
+    return this.id;
   }
 
   /**

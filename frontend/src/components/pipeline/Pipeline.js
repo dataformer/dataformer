@@ -6,9 +6,10 @@ import { grey } from "@mui/material/colors";
 import EditIcon from "@mui/icons-material/Edit";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
 import Code from "@mui/icons-material/Code";
+import DeleteIcon from '@mui/icons-material/Delete';
 
 function Pipeline(props) {
-  const buttons = [<EditIcon />, <DoDisturbIcon />, <Code />];
+  // const buttons = [<EditIcon />, <DoDisturbIcon />, <Code />];
 
   return (
     <>
@@ -35,11 +36,10 @@ function Pipeline(props) {
             <Card variant="outlined" sx={{ marginBottom: "8px" }}>
               <Box sx={{ textAlign: "center" }}>{command.getComponent()}</Box>
               <CardActions sx={{ justifyContent: "center" }}>
-                {buttons.map((button) => (
-                  <Button size="small" color="primary">
-                    {button}
-                  </Button>
-                ))}
+                <Button size="small" color="primary">{<EditIcon />}</Button>
+                <Button size="small" color="primary">{<DoDisturbIcon />}</Button>
+                <Button size="small" color="primary">{<Code />}{command.getId()}</Button>
+                <Button size="small" color="primary" onClick={() => props.setState(props.state.removeCommand(command.getId()))}>{<DeleteIcon/>}</Button>
               </CardActions>
             </Card>
           ))}

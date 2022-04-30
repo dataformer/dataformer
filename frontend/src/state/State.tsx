@@ -12,7 +12,7 @@ export class State {
     inputDataText: string,
     outputDataText: string
   ) {
-    this.commands = commands.map((command) => command);
+    this.commands = commands.map(command => command);
     // this.setState = undefined;
     this.inputDataText = inputDataText;
     this.outputDataText = outputDataText;
@@ -26,6 +26,14 @@ export class State {
   public addCommand(newCommand: Command): State {
     return new State(
       [...this.getCommands(), newCommand],
+      this.getInputDataText(),
+      this.getOutputDataText()
+    );
+  }
+  public removeCommand(commandId: number): State {
+    var newCommands: Array<Command> = this.getCommands().filter(c => Number(c.getId())!==Number(commandId))
+    return new State(
+      newCommands,
       this.getInputDataText(),
       this.getOutputDataText()
     );

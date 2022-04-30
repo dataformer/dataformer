@@ -20,9 +20,17 @@ export class WrapCommand implements Command {
       }
     />
   );
+  private readonly id = Math.floor(Math.random() * 100);
 
   constructor() {
     this.checkRep();
+  }
+
+    /**
+   * @inheritdoc
+   */
+  public getId(): number {
+    return this.id;
   }
 
   /**
