@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { grey } from "@mui/material/colors";
 import Box from "@mui/material/Box";
 import Drawer from "@mui/material/Drawer";
@@ -10,14 +10,28 @@ import FindReplaceIcon from "@mui/icons-material/FindReplace";
 import FilterAltIcon from "@mui/icons-material/FilterAlt";
 import FormatLineSpacingIcon from "@mui/icons-material/FormatLineSpacing";
 import CachedIcon from "@mui/icons-material/Cached";
+import ListAltIcon from "@mui/icons-material/ListAlt";
+import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
 import { FilterColsCommand } from "../../state/FilterColsCommand";
 import { WrapCommand } from "../../state/WrapCommand";
+import { RemoveDuplicatesCommand } from "../../state/RemoveDuplicatesCommand";
 
 function Sidebar(props) {
   const commandGroups = [
+    {
+      name: "Basic commands",
+      icon: <ListAltIcon />,
+      commands: [
+        {
+          name: "Remove duplicate lines",
+          icon: <PlaylistRemoveIcon />,
+          commandType: RemoveDuplicatesCommand,
+        },
+      ],
+    },
     {
       name: "Find/Replace",
       icon: <FindReplaceIcon />,
