@@ -41,8 +41,27 @@ export class State {
     );
   }
 
+  public toggleCommmand(commandId: number): State {
+    const newCommands: Array<Command> = [];
+
+    for (const command of this.getCommands()) {
+      if (command.getId() === commandId) {
+        newCommands.push(command.getToggledCommand());
+      } else {
+        newCommands.push(command);
+      }
+    }
+
+    return new State(
+      newCommands,
+      this.getInputDataText(),
+      this.getOutputDataText()
+    );
+  }
+
   public parseCommandSequence(): string {
     var commandsString: string = this.getCommands()
+      .filter((command) => command.getIsEnabled())
       .map((command) => command.generateScript())
       .join("\n");
     var fullCommand: string =

@@ -15,6 +15,16 @@ export interface Command {
   getComponent(): JSX.Element;
 
   /**
+   * @returns a new command that is toggled between enabled and disabled
+   */
+  getToggledCommand(): Command;
+
+  /**
+   * @returns whether the command is enabled
+   */
+  getIsEnabled(): boolean;
+
+  /**
    * @returns a script that is executable
    */
   generateScript(): string;

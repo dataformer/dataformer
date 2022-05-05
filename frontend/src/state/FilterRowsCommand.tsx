@@ -23,7 +23,7 @@ export class FilterRowsCommand implements Command {
   );
   private readonly id = Math.floor(Math.random() * 100000);
 
-  constructor() {
+  constructor(public readonly isEnabled = true) {
     this.checkRep();
   }
 
@@ -46,6 +46,20 @@ export class FilterRowsCommand implements Command {
    */
   public getComponent(): JSX.Element {
     return this.component;
+  }
+
+  /**
+   * @inheritdoc
+   */
+   public getIsEnabled(): boolean {
+    return this.isEnabled;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public getToggledCommand(): Command {
+    return new FilterRowsCommand(!this.isEnabled);
   }
 
   /**

@@ -32,16 +32,34 @@ function Pipeline(props) {
           {props.state.getCommands().map((command) => (
             <Card
               variant="outlined"
-              sx={{ marginBottom: "8px" }}
+              sx={{
+                marginBottom: "8px",
+              }}
               key={command.getId()}
             >
-              <Box sx={{ textAlign: "center" }}>{command.getComponent()}</Box>
+              <Box
+                sx={{
+                  textAlign: "center",
+                  pointerEvents: command.isEnabled ? "initial" : "none",
+                  opacity: command.isEnabled ? 1 : 0.15,
+                }}
+              >
+                {command.getComponent()}
+              </Box>
               <CardActions sx={{ justifyContent: "center" }}>
                 <Button size="small" color="primary">
                   {<EditIcon />}
                 </Button>
                 <Button size="small" color="primary">
-                  {<DoDisturbIcon />}
+                  {
+                    <DoDisturbIcon
+                      onClick={() =>
+                        props.setState(
+                          props.state.toggleCommmand(command.getId())
+                        )
+                      }
+                    />
+                  }
                 </Button>
                 <Button
                   size="small"
