@@ -57,7 +57,10 @@ export class CountUniqueWordsCommand implements Command {
   public generateScript(): string {
     return `
 def count_unique_words(text):
-    return len(set(text.replace('.', '').replace(',', '').replace('?', '').replace('!', '').replace(';', '').replace('(', '').replace(')', '').split(' ')))
+    import string
+    for character in string.punctuation:
+      text = text.replace(character, '')
+    return len(set(text.split()))
     
 text = count_unique_words(text)
 `;
