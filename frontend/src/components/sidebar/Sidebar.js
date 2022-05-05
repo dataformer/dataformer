@@ -15,6 +15,7 @@ import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
+import { FilterSeparatedValuesCommand } from "../../state/FilterSeparatedValuesCommand";
 import { FilterColsCommand } from "../../state/FilterColsCommand";
 import { WrapCommand } from "../../state/WrapCommand";
 import { RemoveDuplicatesCommand } from "../../state/RemoveDuplicatesCommand";
@@ -40,6 +41,11 @@ function Sidebar(props) {
           name: "Filter rows",
           icon: <FilterAltIcon />,
           commandType: FilterRowsCommand,
+        },
+        {
+          name: "Filter separated values",
+          icon: <FilterAltIcon />,
+          commandType: FilterSeparatedValuesCommand,
         },
         {
           name: "Filter columns",

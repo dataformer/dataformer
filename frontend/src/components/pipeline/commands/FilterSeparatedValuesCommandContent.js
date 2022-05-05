@@ -4,14 +4,16 @@ import Typography from "@mui/material/Typography";
 import { CardContent } from "@mui/material";
 import { Box } from "@mui/system";
 
-function FilterRowsCommandContent(props) {
+function FilterSeparatedValuesCommandContent(props) {
+  const [separator, setSeparator] = useState("");
   const [regEx, setRegEx] = useState("");
 
   useEffect(() => {
     props.onArgumentsChange({
+      separator,
       regEx,
     });
-  }, [regEx]);
+  }, [separator, regEx]);
 
   return (
     <>
@@ -25,7 +27,8 @@ function FilterRowsCommandContent(props) {
           align="center"
           paddingBottom={1}
         >
-          Filter rows by specifying a regular expression to match.
+          Filter separated values by specifying a separator and a regular
+          expression to match.
         </Typography>
         <Box
           sx={{
@@ -39,6 +42,15 @@ function FilterRowsCommandContent(props) {
         >
           <TextField
             id="outlined-basic"
+            label="Separator"
+            variant="outlined"
+            sx={{
+              width: "10ch",
+            }}
+            onChange={(event) => setSeparator(event.target.value)}
+          />
+          <TextField
+            id="outlined-basic"
             label="Regular Expression"
             variant="outlined"
             onChange={(event) => setRegEx(event.target.value)}
@@ -49,4 +61,4 @@ function FilterRowsCommandContent(props) {
   );
 }
 
-export default FilterRowsCommandContent;
+export default FilterSeparatedValuesCommandContent;

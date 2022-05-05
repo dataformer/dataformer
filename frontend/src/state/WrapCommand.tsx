@@ -22,7 +22,7 @@ export class WrapCommand implements Command {
   );
   private readonly id = Math.floor(Math.random() * 100000);
 
-  constructor(public readonly isEnabled = true) {
+  constructor(private readonly isEnabled = true) {
     this.checkRep();
   }
 

@@ -1,22 +1,24 @@
 import React from "react";
 import { Command } from "./Command";
-import FilterRowsCommandContent from "../components/pipeline/commands/FilterRowsCommandContent";
+import FilterSeparatedValuesCommandContent from "../components/pipeline/commands/FilterSeparatedValuesCommandContent";
 
-interface FilterRowsCommandArguments {
+interface FilterSeparatedValuesCommandArguments {
+  separator: string;
   regEx: string;
 }
 
-export class FilterRowsCommand implements Command {
-  private readonly label = "Filter Rows";
-  private arguments: FilterRowsCommandArguments = {
+export class FilterSeparatedValuesCommand implements Command {
+  private readonly label = "Filter Separated Values";
+  private arguments: FilterSeparatedValuesCommandArguments = {
+    separator: "",
     regEx: "",
   };
   private readonly component = (
-    <FilterRowsCommandContent
+    <FilterSeparatedValuesCommandContent
       label={this.label}
-      onArgumentsChange={(newArguments: FilterRowsCommandArguments) =>
-        (this.arguments = newArguments)
-      }
+      onArgumentsChange={(
+        newArguments: FilterSeparatedValuesCommandArguments
+      ) => (this.arguments = newArguments)}
     />
   );
   private readonly id = Math.floor(Math.random() * 100000);
@@ -57,7 +59,7 @@ export class FilterRowsCommand implements Command {
    * @inheritdoc
    */
   public getToggledCommand(): Command {
-    return new FilterRowsCommand(!this.isEnabled);
+    return new FilterSeparatedValuesCommand(!this.isEnabled);
   }
 
   /**
@@ -67,15 +69,15 @@ export class FilterRowsCommand implements Command {
     return `
 import re
 
-def filter_rows(text):
+def filter_separated_values(text):
     
-  rows = text.split(\n)
+  rows = text.split(${this.arguments.separator})
    
   output = [row for row in rows if re.search(${this.arguments.regEx}) is not None]
 
-  return """\n""".join(rows)
+  return """${this.arguments.separator}""".join(rows)
     
-text = filter_rows(text)
+text = filter_separated_values(text)
 `;
   }
 
@@ -87,7 +89,7 @@ text = filter_rows(text)
   public toString(): string {
     this.checkRep();
 
-    return `This is a Filter Rows command with script template ${this.generateScript()}`;
+    return `This is a Filter Separated Values command with script template ${this.generateScript()}`;
   }
 
   private checkRep(): void {}
