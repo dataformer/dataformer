@@ -19,6 +19,10 @@ export class State {
     this.checkRep();
   }
 
+  public getCounterValue(): number {
+    return this.data.counter;
+  }
+
   public getCommands(): Array<Command> {
     return this.data.commands;
   }
@@ -27,7 +31,7 @@ export class State {
     return new State({
       ...this.data,
       commands: [...this.getCommands(), newCommand],
-      counter: this.data.counter + 1
+      counter: this.data.counter + 1,
     });
   }
   public removeCommand(commandId: number): State {

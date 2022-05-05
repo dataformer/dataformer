@@ -21,10 +21,13 @@ export class FilterColsCommand implements Command {
       }
     />
   );
-  private readonly id = Math.floor(Math.random() * 100000);
+  private readonly isEnabled;
+  private readonly id;
 
-  constructor(private readonly isEnabled = true) {
+  constructor(isEnabled: boolean, id: number) {
     this.checkRep();
+    this.isEnabled = isEnabled;
+    this.id = id;
   }
 
   /**
@@ -47,7 +50,7 @@ export class FilterColsCommand implements Command {
   public getComponent(): JSX.Element {
     return this.component;
   }
-  
+
   /**
    * @inheritdoc
    */
@@ -59,7 +62,7 @@ export class FilterColsCommand implements Command {
    * @inheritdoc
    */
   public getToggledCommand(): Command {
-    return new FilterColsCommand(!this.isEnabled);
+    return new FilterColsCommand(!this.isEnabled, this.getId());
   }
 
   /**

@@ -7,10 +7,13 @@ export class RemoveDuplicatesCommand implements Command {
   private readonly component = (
     <RemoveDuplicatesCommandContent label={this.label} />
   );
-  private readonly id = Math.floor(Math.random() * 100000);
+  private readonly isEnabled;
+  private readonly id;
 
-  constructor(private readonly isEnabled = true) {
+  constructor(isEnabled: boolean, id: number) {
     this.checkRep();
+    this.isEnabled = isEnabled;
+    this.id = id;
   }
 
   /**
@@ -45,7 +48,7 @@ export class RemoveDuplicatesCommand implements Command {
    * @inheritdoc
    */
   public getToggledCommand(): Command {
-    return new RemoveDuplicatesCommand(!this.isEnabled);
+    return new RemoveDuplicatesCommand(!this.isEnabled, this.getId());
   }
 
   /**

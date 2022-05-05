@@ -21,10 +21,13 @@ export class ReplaceCommand implements Command {
       }
     />
   );
-  private readonly id = Math.floor(Math.random() * 100000);
+  private readonly isEnabled;
+  private readonly id;
 
-  constructor(private readonly isEnabled = true) {
+  constructor(isEnabled: boolean, id: number) {
     this.checkRep();
+    this.isEnabled = isEnabled;
+    this.id = id;
   }
 
   /**
@@ -59,7 +62,7 @@ export class ReplaceCommand implements Command {
    * @inheritdoc
    */
   public getToggledCommand(): Command {
-    return new ReplaceCommand(!this.isEnabled);
+    return new ReplaceCommand(!this.isEnabled, this.getId());
   }
 
   /**

@@ -20,7 +20,11 @@ function SidebarGroup(props) {
       <ListItemButton
         sx={{ pl: 4 }}
         onClick={() =>
-          props.setState(props.state.addCommand(new c.commandType()))
+          props.setState(
+            props.state.addCommand(
+              new c.commandType(true, props.state.getCounterValue())
+            )
+          )
         }
       >
         {c.icon && <ListItemIcon>{c.icon}</ListItemIcon>}

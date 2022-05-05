@@ -20,10 +20,13 @@ export class WrapCommand implements Command {
       }
     />
   );
-  private readonly id = Math.floor(Math.random() * 100000);
+  private readonly isEnabled;
+  private readonly id;
 
-  constructor(private readonly isEnabled = true) {
+  constructor(isEnabled: boolean, id: number) {
     this.checkRep();
+    this.isEnabled = isEnabled;
+    this.id = id;
   }
 
   /**
@@ -58,7 +61,7 @@ export class WrapCommand implements Command {
    * @inheritdoc
    */
   public getToggledCommand(): Command {
-    return new WrapCommand(!this.isEnabled);
+    return new WrapCommand(!this.isEnabled, this.getId());
   }
 
   /**

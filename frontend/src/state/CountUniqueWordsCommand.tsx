@@ -7,10 +7,13 @@ export class CountUniqueWordsCommand implements Command {
   private readonly component = (
     <CountUniqueWordsCommandContent label={this.label} />
   );
-  private readonly id = Math.floor(Math.random() * 100000);
+  private readonly isEnabled;
+  private readonly id;
 
-  constructor(private readonly isEnabled = true) {
+  constructor(isEnabled: boolean, id: number) {
     this.checkRep();
+    this.isEnabled = isEnabled;
+    this.id = id;
   }
 
   /**
@@ -45,7 +48,7 @@ export class CountUniqueWordsCommand implements Command {
    * @inheritdoc
    */
   public getToggledCommand(): Command {
-    return new CountUniqueWordsCommand(!this.isEnabled);
+    return new CountUniqueWordsCommand(!this.isEnabled, this.getId());
   }
 
   /**
