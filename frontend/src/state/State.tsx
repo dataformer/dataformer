@@ -4,6 +4,7 @@ type StateData = {
   commands: Array<Command>;
   inputDataText: string;
   outputDataText: string;
+  counter: number;
 };
 export class State {
   // // TODO - we may eventually incorporate setState but need to worry about React changing the function under the hood
@@ -12,9 +13,8 @@ export class State {
 
   constructor(data: StateData) {
     this.data = {
+      ...data,
       commands: data.commands.map((command) => command),
-      inputDataText: data.inputDataText,
-      outputDataText: data.outputDataText,
     };
     this.checkRep();
   }
@@ -27,6 +27,7 @@ export class State {
     return new State({
       ...this.data,
       commands: [...this.getCommands(), newCommand],
+      counter: this.data.counter + 1
     });
   }
   public removeCommand(commandId: number): State {
@@ -119,5 +120,10 @@ export class State {
 }
 
 export function createState(): State {
-  return new State({ commands: [], inputDataText: "", outputDataText: "" });
+  return new State({
+    commands: [],
+    inputDataText: "",
+    outputDataText: "",
+    counter: 0,
+  });
 }
