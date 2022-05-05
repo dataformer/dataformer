@@ -1,44 +1,39 @@
 import { Command } from "./Command";
 
+type StateData = {
+  commands: Array<Command>;
+  inputDataText: string;
+  outputDataText: string;
+};
 export class State {
-  private readonly commands: Array<Command>;
-  // TODO - we may eventually incorporate setState but need to worry about React changing the function under the hood
-  // public readonly setState: (() => void) | undefined;
-  private readonly inputDataText: string;
-  private readonly outputDataText: string;
+  // // TODO - we may eventually incorporate setState but need to worry about React changing the function under the hood
+  // // public readonly setState: (() => void) | undefined;
+  private readonly data: StateData;
 
-  constructor(
-    commands: Array<Command>,
-    inputDataText: string,
-    outputDataText: string
-  ) {
-    this.commands = commands.map((command) => command);
-    // this.setState = undefined;
-    this.inputDataText = inputDataText;
-    this.outputDataText = outputDataText;
+  constructor(data: StateData) {
+    this.data = {
+      commands: data.commands.map((command) => command),
+      inputDataText: data.inputDataText,
+      outputDataText: data.outputDataText,
+    };
     this.checkRep();
   }
 
   public getCommands(): Array<Command> {
-    return this.commands;
+    return this.data.commands;
   }
 
   public addCommand(newCommand: Command): State {
-    return new State(
-      [...this.getCommands(), newCommand],
-      this.getInputDataText(),
-      this.getOutputDataText()
-    );
+    return new State({
+      ...this.data,
+      commands: [...this.getCommands(), newCommand],
+    });
   }
   public removeCommand(commandId: number): State {
-    var newCommands: Array<Command> = this.getCommands().filter(
-      (c) => c.getId() !== commandId
-    );
-    return new State(
-      newCommands,
-      this.getInputDataText(),
-      this.getOutputDataText()
-    );
+    return new State({
+      ...this.data,
+      commands: this.getCommands().filter((c) => c.getId() !== commandId),
+    });
   }
 
   public toggleCommmand(commandId: number): State {
@@ -52,11 +47,7 @@ export class State {
       }
     }
 
-    return new State(
-      newCommands,
-      this.getInputDataText(),
-      this.getOutputDataText()
-    );
+    return new State({ ...this.data, commands: newCommands });
   }
 
   public parseCommandSequence(): string {
@@ -75,27 +66,19 @@ export class State {
   }
 
   public getInputDataText(): string {
-    return this.inputDataText;
+    return this.data.inputDataText;
   }
 
   public setInputDataText(inputDataText: string): State {
-    return new State(
-      this.getCommands(),
-      inputDataText,
-      this.getOutputDataText()
-    );
+    return new State({ ...this.data, inputDataText });
   }
 
   public getOutputDataText(): string {
-    return this.outputDataText;
+    return this.data.outputDataText;
   }
 
   public setOutputDataText(outputDataText: string): State {
-    return new State(
-      this.getCommands(),
-      this.getInputDataText(),
-      outputDataText
-    );
+    return new State({ ...this.data, outputDataText });
   }
 
   public equalValue(that: State): boolean {
@@ -136,5 +119,5 @@ export class State {
 }
 
 export function createState(): State {
-  return new State([], "", "");
+  return new State({ commands: [], inputDataText: "", outputDataText: "" });
 }
