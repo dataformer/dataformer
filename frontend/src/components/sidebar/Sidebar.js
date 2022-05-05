@@ -12,6 +12,7 @@ import FormatLineSpacingIcon from "@mui/icons-material/FormatLineSpacing";
 import CachedIcon from "@mui/icons-material/Cached";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
+import NumbersIcon from "@mui/icons-material/Numbers";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
@@ -19,6 +20,7 @@ import { FilterSeparatedValuesCommand } from "../../state/FilterSeparatedValuesC
 import { FilterColsCommand } from "../../state/FilterColsCommand";
 import { WrapCommand } from "../../state/WrapCommand";
 import { RemoveDuplicatesCommand } from "../../state/RemoveDuplicatesCommand";
+import { CountUniqueWordsCommand } from "../../state/CountUniqueWordsCommand";
 
 function Sidebar(props) {
   const commandGroups = [
@@ -30,6 +32,11 @@ function Sidebar(props) {
           name: "Remove duplicate lines",
           icon: <PlaylistRemoveIcon />,
           commandType: RemoveDuplicatesCommand,
+        },
+        {
+          name: "Count unique words",
+          icon: <NumbersIcon />,
+          commandType: CountUniqueWordsCommand,
         },
       ],
     },
