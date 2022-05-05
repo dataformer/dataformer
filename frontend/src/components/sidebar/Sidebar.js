@@ -14,6 +14,7 @@ import ListAltIcon from "@mui/icons-material/ListAlt";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import SubtitlesOffIcon from "@mui/icons-material/SubtitlesOff";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
@@ -23,6 +24,7 @@ import { WrapCommand } from "../../state/WrapCommand";
 import { RemoveDuplicatesCommand } from "../../state/RemoveDuplicatesCommand";
 import { CountUniqueWordsCommand } from "../../state/CountUniqueWordsCommand";
 import { RemoveHeaderCommand } from "../../state/RemoveHeaderCommand";
+import { PrependLineCommand } from "../../state/PrependLineCommand";
 
 function Sidebar(props) {
   const commandGroups = [
@@ -44,6 +46,11 @@ function Sidebar(props) {
           name: "Remove header row",
           icon: <SubtitlesOffIcon />,
           commandType: RemoveHeaderCommand,
+        },
+        {
+          name: "Prepend line",
+          icon: <ArrowDownwardIcon />,
+          commandType: PrependLineCommand,
         },
       ],
     },
