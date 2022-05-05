@@ -31,8 +31,8 @@ function FilterColsCommandContent(props) {
           align="center"
           paddingBottom={1}
         >
-          Filter columns allow you to specify a separator and return the
-          specified columns (1-indexed)
+          Filter columns by specifying a separator and column numbers(1-indexed)
+          to keep.
         </Typography>
         <Box
           sx={{

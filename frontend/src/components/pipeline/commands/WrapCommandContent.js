@@ -26,7 +26,7 @@ function WrapCommandContent(props) {
         align="center"
         paddingBottom={1}
       >
-        Wrap command allows you to combine related data on consecutive lines
+        Allows you to combine related data on consecutive lines
       </Typography>
       <Box
         sx={{

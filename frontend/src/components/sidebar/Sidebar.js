@@ -13,7 +13,7 @@ import CachedIcon from "@mui/icons-material/Cached";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import NumbersIcon from "@mui/icons-material/Numbers";
-import SubtitlesOffIcon from '@mui/icons-material/SubtitlesOff';
+import SubtitlesOffIcon from "@mui/icons-material/SubtitlesOff";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
@@ -22,7 +22,7 @@ import { FilterColsCommand } from "../../state/FilterColsCommand";
 import { WrapCommand } from "../../state/WrapCommand";
 import { RemoveDuplicatesCommand } from "../../state/RemoveDuplicatesCommand";
 import { CountUniqueWordsCommand } from "../../state/CountUniqueWordsCommand";
-import {RemoveHeaderCommand } from "../../state/RemoveHeaderCommand"
+import { RemoveHeaderCommand } from "../../state/RemoveHeaderCommand";
 
 function Sidebar(props) {
   const commandGroups = [
@@ -48,7 +48,7 @@ function Sidebar(props) {
       ],
     },
     {
-      name: "Find/Replace",
+      name: "Filter/Replace",
       icon: <FindReplaceIcon />,
       commands: [
         {

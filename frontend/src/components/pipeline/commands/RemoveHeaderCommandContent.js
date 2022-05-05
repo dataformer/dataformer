@@ -15,7 +15,7 @@ function RemoveHeaderCommandContent(props) {
           align="center"
           paddingBottom={1}
         >
-          Remove the header row
+          Remove the header row.
         </Typography>
       </CardContent>
     </>
