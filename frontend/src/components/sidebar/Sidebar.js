@@ -15,6 +15,7 @@ import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import SubtitlesOffIcon from "@mui/icons-material/SubtitlesOff";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
@@ -25,6 +26,7 @@ import { RemoveDuplicatesCommand } from "../../state/RemoveDuplicatesCommand";
 import { CountUniqueWordsCommand } from "../../state/CountUniqueWordsCommand";
 import { RemoveHeaderCommand } from "../../state/RemoveHeaderCommand";
 import { PrependLineCommand } from "../../state/PrependLineCommand";
+import { AppendLineCommand } from "../../state/AppendLineCommand";
 
 function Sidebar(props) {
   const commandGroups = [
@@ -51,6 +53,11 @@ function Sidebar(props) {
           name: "Prepend line",
           icon: <ArrowDownwardIcon />,
           commandType: PrependLineCommand,
+        },
+        {
+          name: "Append line",
+          icon: <ArrowUpwardIcon />,
+          commandType: AppendLineCommand,
         },
       ],
     },

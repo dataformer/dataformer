@@ -1,20 +1,20 @@
 import React from "react";
 import { Command } from "./Command";
-import PrependLineCommandContent from "../components/pipeline/commands/PrependLineCommandContent";
+import AppendLineCommandContent from "../components/pipeline/commands/AppendLineCommandContent";
 
-interface PrependLineCommandArguments {
+interface AppendLineCommandArguments {
   line: string;
 }
 
-export class PrependLineCommand implements Command {
-  private readonly label = "Prepend line";
-  private arguments: PrependLineCommandArguments = {
+export class AppendLineCommand implements Command {
+  private readonly label = "Append line";
+  private arguments: AppendLineCommandArguments = {
     line: "",
   };
   private readonly component = (
-    <PrependLineCommandContent
+    <AppendLineCommandContent
       label={this.label}
-      onArgumentsChange={(newArguments: PrependLineCommandArguments) =>
+      onArgumentsChange={(newArguments: AppendLineCommandArguments) =>
         (this.arguments = newArguments)
       }
     />
@@ -60,7 +60,7 @@ export class PrependLineCommand implements Command {
    * @inheritdoc
    */
   public getToggledCommand(): Command {
-    return new PrependLineCommand(!this.isEnabled, this.getId());
+    return new AppendLineCommand(!this.isEnabled, this.getId());
   }
 
   /**
@@ -69,12 +69,12 @@ export class PrependLineCommand implements Command {
   public generateScript(): string {
     return `
 
-def prepend_line(text):
+def append_line(text):
   if not text:
     return "${this.arguments.line}"
     
-  return "${this.arguments.line}" + """\n""" + text    
-text = prepend_line(text)
+  return text + """\n""" + "${this.arguments.line}"    
+text = append_line(text)
 `;
   }
 
@@ -86,7 +86,7 @@ text = prepend_line(text)
   public toString(): string {
     this.checkRep();
 
-    return `This is a Prepend Line command with script template ${this.generateScript()}`;
+    return `This is an Append Line command with script template ${this.generateScript()}`;
   }
 
   private checkRep(): void {}
