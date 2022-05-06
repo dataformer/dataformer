@@ -73,7 +73,7 @@ export class ReplaceCommand implements Command {
 import re
 def replace(text):
 
-    return re.sub(${this.arguments.find}, ${this.arguments.replace}, text)
+    return re.sub(r"${this.arguments.find}", """${this.arguments.replace}""", text)
     
 text = replace(text)
 `;

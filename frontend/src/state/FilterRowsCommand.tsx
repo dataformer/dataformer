@@ -74,9 +74,9 @@ def filter_rows(text):
     
   rows = text.split(\n)
    
-  output = [row for row in rows if re.search(${this.arguments.regEx}) is not None]
+  output = [row for row in rows if re.search(r"${this.arguments.regEx}", row) is not None]
 
-  return """\n""".join(rows)
+  return """\n""".join(output)
     
 text = filter_rows(text)
 `;
