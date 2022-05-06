@@ -3,7 +3,6 @@ import TextField from "@mui/material/TextField";
 import Box from "@mui/material/Box";
 
 function DataInput(props) {
-  const [input, setInput] = useState("");
   return (
     <Box sx={{ paddingBottom: "8px" }}>
       <TextField
@@ -13,9 +12,8 @@ function DataInput(props) {
         minRows={12}
         maxRows={12}
         fullWidth
-        value={input}
+        value={props.state.getInputDataText()}
         onChange={(event) => {
-          setInput(event.target.value);
           props.setState(props.state.setInputDataText(event.target.value));
         }}
       />

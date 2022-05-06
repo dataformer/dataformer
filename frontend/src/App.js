@@ -1,13 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import "./App.css";
+import IconButton from "@mui/material/IconButton";
+import FileOpenIcon from "@mui/icons-material/FileOpen";
 import Sidebar from "./components/sidebar/Sidebar";
 import Pipeline from "./components/pipeline/Pipeline";
 import Data from "./components/data/Data";
 import useResize from "./utils/resizing";
+import "./App.css";
 
 import { createState } from "./state/State";
 
@@ -34,13 +36,42 @@ function App() {
       });
   }
 
+  function uploadFile(event) {
+    const input = event.target;
+    if ("files" in input && input.files.length > 0) {
+      var fileToLoad = input.files[0];
+      var fileReader = new FileReader();
+      fileReader.onload = (fileLoadedEvent) => {
+        var textFromFile = fileLoadedEvent.target.result;
+        setState(state.setInputDataText(textFromFile));
+      };
+      fileReader.readAsText(fileToLoad);
+    }
+  }
+
   return (
     <div className="App">
       <AppBar position="static">
         <Toolbar variant="dense">
-          <Typography variant="h6" color="inherit" component="div">
+          <Typography
+            variant="h6"
+            color="inherit"
+            component="div"
+            sx={{ textAlign: "left", flexGrow: 1 }}
+          >
             Dataformer
           </Typography>
+          <IconButton
+            size="large"
+            aria-label="open file"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit"
+            component="label"
+          >
+            <FileOpenIcon />
+            <input type="file" onChange={(even) => uploadFile(event)} hidden />
+          </IconButton>
         </Toolbar>
       </AppBar>
       <Box
