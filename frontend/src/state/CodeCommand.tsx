@@ -89,7 +89,7 @@ text = code_command(text)
   public toString(): string {
     this.checkRep();
 
-    return `This is an Impute command with script template ${this.generateScript()}`;
+    return `This is a Code command with script template ${this.generateScript()}`;
   }
 
   private checkRep(): void {}

@@ -1,3 +1,4 @@
+import { CodeCommand } from "./CodeCommand";
 import { Command } from "./Command";
 
 type StateData = {
@@ -34,11 +35,21 @@ export class State {
       counter: this.data.counter + 1,
     });
   }
+
   public removeCommand(commandId: number): State {
     return new State({
       ...this.data,
       commands: this.getCommands().filter((c) => c.getId() !== commandId),
     });
+  }
+
+  public editCommand(commandId: number): State {
+    const newCommands = this.getCommands().map((c) => (c.getId() === commandId) ? new CodeCommand(c.getIsEnabled(), c.getId(), c.generateScript().trim()) : c)
+    console.log(newCommands);
+    return new State({
+      ...this.data,
+      commands: newCommands
+    })
   }
 
   public toggleCommmand(commandId: number): State {

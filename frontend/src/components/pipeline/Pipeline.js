@@ -48,7 +48,13 @@ function Pipeline(props) {
               </Box>
               <CardActions sx={{ justifyContent: "center" }}>
                 <Button size="small" color="primary">
-                  {<EditIcon />}
+                  {
+                    <EditIcon
+                      onClick={() =>
+                        props.setState(props.state.editCommand(command.getId()))
+                      }
+                    />
+                  }
                 </Button>
                 <Button size="small" color="primary">
                   {
