@@ -12,7 +12,11 @@ export class ImputeCommand implements Command {
   // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
 
   private readonly label = "Impute";
-  private arguments: ImputeCommandArguments = { columnName: "", strategy: "", constant: 0 };
+  private arguments: ImputeCommandArguments = {
+    columnName: "",
+    strategy: "",
+    constant: 0,
+  };
   private readonly component = (
     <ImputeCommandContent
       label={this.label}
@@ -22,7 +26,10 @@ export class ImputeCommand implements Command {
     />
   );
 
-  constructor(private readonly isEnabled: boolean, private readonly id: number) {
+  constructor(
+    private readonly isEnabled: boolean,
+    private readonly id: number
+  ) {
     this.checkRep();
   }
 
@@ -47,19 +54,19 @@ export class ImputeCommand implements Command {
     return this.component;
   }
 
-    /**
+  /**
    * @inheritdoc
    */
-     public getIsEnabled(): boolean {
-      return this.isEnabled;
-    }
-  
-    /**
-     * @inheritdoc
-     */
-    public getToggledCommand(): Command {
-      return new ImputeCommand(!this.isEnabled, this.getId());
-    }
+  public getIsEnabled(): boolean {
+    return this.isEnabled;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public getToggledCommand(): Command {
+    return new ImputeCommand(!this.isEnabled, this.getId());
+  }
 
   /**
    * @inheritdoc
@@ -72,13 +79,13 @@ export class ImputeCommand implements Command {
         strategy_code += "(df[[column_name]].mean())";
         break;
       case "constant":
-        strategy_code += `(${this.arguments.constant})`
+        strategy_code += `(${this.arguments.constant})`;
         break;
       case "forward":
-        strategy_code += "(method='ffill')"
+        strategy_code += "(method='ffill')";
         break;
       case "backward":
-        strategy_code += "(method='bfill')"
+        strategy_code += "(method='bfill')";
         break;
     }
 

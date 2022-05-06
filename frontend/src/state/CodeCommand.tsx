@@ -10,7 +10,7 @@ export class CodeCommand implements Command {
   // private readonly scriptTemplate: string = "grep/sed/awk | something | something else"
 
   private readonly label = "Code";
-  private arguments: CodeCommandArguments = { code: ""};
+  private arguments: CodeCommandArguments = { code: "" };
   private readonly component = (
     <CodeCommandContent
       label={this.label}
@@ -21,13 +21,17 @@ export class CodeCommand implements Command {
     />
   );
 
-  constructor(private readonly isEnabled: boolean, private readonly id: number, private readonly template = `def code_command(text):
+  constructor(
+    private readonly isEnabled: boolean,
+    private readonly id: number,
+    private readonly template = `def code_command(text):
   return text
 
 text = code_command(text)
-`) {
+`
+  ) {
     this.checkRep();
-    console.log(this.template)
+    console.log(this.template);
     this.component = (
       <CodeCommandContent
         label={this.label}
@@ -60,19 +64,19 @@ text = code_command(text)
     return this.component;
   }
 
-    /**
+  /**
    * @inheritdoc
    */
-     public getIsEnabled(): boolean {
-      return this.isEnabled;
-    }
-  
-    /**
-     * @inheritdoc
-     */
-    public getToggledCommand(): Command {
-      return new CodeCommand(!this.isEnabled, this.getId());
-    }
+  public getIsEnabled(): boolean {
+    return this.isEnabled;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public getToggledCommand(): Command {
+    return new CodeCommand(!this.isEnabled, this.getId());
+  }
 
   /**
    * @inheritdoc

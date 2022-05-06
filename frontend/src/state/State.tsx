@@ -44,12 +44,20 @@ export class State {
   }
 
   public editCommand(commandId: number): State {
-    const newCommands = this.getCommands().map((c) => (c.getId() === commandId) ? new CodeCommand(c.getIsEnabled(), c.getId(), c.generateScript().trim()) : c)
+    const newCommands = this.getCommands().map((c) =>
+      c.getId() === commandId
+        ? new CodeCommand(
+            c.getIsEnabled(),
+            c.getId(),
+            c.generateScript().trim()
+          )
+        : c
+    );
     console.log(newCommands);
     return new State({
       ...this.data,
-      commands: newCommands
-    })
+      commands: newCommands,
+    });
   }
 
   public toggleCommmand(commandId: number): State {

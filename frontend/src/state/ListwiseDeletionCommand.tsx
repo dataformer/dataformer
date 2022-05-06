@@ -8,7 +8,10 @@ export class ListwiseDeletionCommand implements Command {
     <ListwiseDeletionCommandContent label={this.label} />
   );
 
-  constructor(private readonly isEnabled: boolean, private readonly id: number) {
+  constructor(
+    private readonly isEnabled: boolean,
+    private readonly id: number
+  ) {
     this.checkRep();
   }
 
@@ -33,19 +36,19 @@ export class ListwiseDeletionCommand implements Command {
     return this.component;
   }
 
-    /**
+  /**
    * @inheritdoc
    */
-     public getIsEnabled(): boolean {
-      return this.isEnabled;
-    }
-  
-    /**
-     * @inheritdoc
-     */
-    public getToggledCommand(): Command {
-      return new ListwiseDeletionCommand(!this.isEnabled, this.getId());
-    }
+  public getIsEnabled(): boolean {
+    return this.isEnabled;
+  }
+
+  /**
+   * @inheritdoc
+   */
+  public getToggledCommand(): Command {
+    return new ListwiseDeletionCommand(!this.isEnabled, this.getId());
+  }
 
   /**
    * @inheritdoc
