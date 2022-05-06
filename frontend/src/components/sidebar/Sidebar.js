@@ -13,7 +13,6 @@ import CachedIcon from "@mui/icons-material/Cached";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import NumbersIcon from "@mui/icons-material/Numbers";
-import SubtitlesOffIcon from "@mui/icons-material/SubtitlesOff";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 
@@ -40,14 +39,14 @@ function Sidebar(props) {
           commandType: RemoveDuplicatesCommand,
         },
         {
+          name: "Remove header row",
+          icon: <PlaylistRemoveIcon />,
+          commandType: RemoveHeaderCommand,
+        },
+        {
           name: "Count unique words",
           icon: <NumbersIcon />,
           commandType: CountUniqueWordsCommand,
-        },
-        {
-          name: "Remove header row",
-          icon: <SubtitlesOffIcon />,
-          commandType: RemoveHeaderCommand,
         },
         {
           name: "Prepend line",
