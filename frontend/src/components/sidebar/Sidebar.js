@@ -18,6 +18,7 @@ import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
 import DoNotDisturbOnTotalSilenceIcon from "@mui/icons-material/DoNotDisturbOnTotalSilence";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Add from "@mui/icons-material/Add";
+import CodeIcon from "@mui/icons-material/Code";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
@@ -31,6 +32,7 @@ import { PrependLineCommand } from "../../state/PrependLineCommand";
 import { AppendLineCommand } from "../../state/AppendLineCommand";
 import { ListwiseDeletionCommand } from "../../state/ListwiseDeletionCommand";
 import { ImputeCommand } from "../../state/ImputeCommand";
+import { CodeCommand } from "../../state/CodeCommand";
 
 function Sidebar(props) {
   const commandGroups = [
@@ -98,13 +100,11 @@ function Sidebar(props) {
         {
           name: "Listwise deletion",
           icon: <DeleteForeverIcon />,
-          // TODO
           commandType: ListwiseDeletionCommand,
         },
         {
           name: "Imputation",
           icon: <Add />,
-          // TODO
           commandType: ImputeCommand,
         },
       ],
@@ -117,6 +117,11 @@ function Sidebar(props) {
           name: "Wrap lines",
           icon: <FormatLineSpacingIcon />,
           commandType: WrapCommand,
+        },
+        {
+          name: "Code",
+          icon: <CodeIcon />,
+          commandType: CodeCommand,
         },
       ],
     },
