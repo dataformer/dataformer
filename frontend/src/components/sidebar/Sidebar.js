@@ -15,6 +15,9 @@ import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import DoNotDisturbOnTotalSilenceIcon from "@mui/icons-material/DoNotDisturbOnTotalSilence";
+import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
+import Add from "@mui/icons-material/Add";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
@@ -26,6 +29,8 @@ import { CountUniqueWordsCommand } from "../../state/CountUniqueWordsCommand";
 import { RemoveHeaderCommand } from "../../state/RemoveHeaderCommand";
 import { PrependLineCommand } from "../../state/PrependLineCommand";
 import { AppendLineCommand } from "../../state/AppendLineCommand";
+import { ListwiseDeletionCommand } from "../../state/ListwiseDeletionCommand";
+import { ImputeCommand } from "../../state/ImputeCommand";
 
 function Sidebar(props) {
   const commandGroups = [
@@ -83,6 +88,24 @@ function Sidebar(props) {
           name: "Replace",
           icon: <CachedIcon />,
           commandType: ReplaceCommand,
+        },
+      ],
+    },
+    {
+      name: "Missing values",
+      icon: <DoNotDisturbOnTotalSilenceIcon />,
+      commands: [
+        {
+          name: "Listwise deletion",
+          icon: <DeleteForeverIcon />,
+          // TODO
+          commandType: ListwiseDeletionCommand,
+        },
+        {
+          name: "Imputation",
+          icon: <Add />,
+          // TODO
+          commandType: ImputeCommand,
         },
       ],
     },
