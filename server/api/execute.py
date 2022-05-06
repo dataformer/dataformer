@@ -9,22 +9,22 @@ import os.path
 
 class ExecuteResource(Resource):
     def post(self):
-        python_script = request.form.get('script')
+        python_script = request.form.get("script")
 
         print()
         print("[DEBUG] Executing Python script:")
         print(python_script)
         print()
 
-        filename = str(time.time()).replace(".", "") \
-            + str(random.randint(0, 10000000)) + ".py"
+        filename = (
+            str(time.time()).replace(".", "") + str(random.randint(0, 10000000)) + ".py"
+        )
 
         if not os.path.exists(filename):
-            with open(filename, 'w') as f:
+            with open(filename, "w") as f:
                 f.write(python_script)
         else:
             return abort(409)
-
 
         command_output = subprocess.run(
             f"python3 {filename}", stdout=subprocess.PIPE, shell=True
