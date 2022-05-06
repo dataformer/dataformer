@@ -21,9 +21,8 @@ export class ImputeCommand implements Command {
       }
     />
   );
-  private readonly id = Math.floor(Math.random() * 100000);
 
-  constructor(private readonly isEnabled = true) {
+  constructor(private readonly isEnabled: boolean, private readonly id: number) {
     this.checkRep();
   }
 
@@ -59,7 +58,7 @@ export class ImputeCommand implements Command {
      * @inheritdoc
      */
     public getToggledCommand(): Command {
-      return new ImputeCommand(!this.isEnabled);
+      return new ImputeCommand(!this.isEnabled, this.getId());
     }
 
   /**

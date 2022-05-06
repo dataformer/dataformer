@@ -7,9 +7,8 @@ export class ListwiseDeletionCommand implements Command {
   private readonly component = (
     <ListwiseDeletionCommandContent label={this.label} />
   );
-  private readonly id = Math.floor(Math.random() * 100000);
 
-  constructor(private readonly isEnabled = true) {
+  constructor(private readonly isEnabled: boolean, private readonly id: number) {
     this.checkRep();
   }
 
@@ -45,7 +44,7 @@ export class ListwiseDeletionCommand implements Command {
      * @inheritdoc
      */
     public getToggledCommand(): Command {
-      return new ListwiseDeletionCommand(!this.isEnabled);
+      return new ListwiseDeletionCommand(!this.isEnabled, this.getId());
     }
 
   /**
