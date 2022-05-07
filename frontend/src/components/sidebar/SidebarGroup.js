@@ -15,7 +15,7 @@ function SidebarGroup(props) {
     setOpen(!open);
   };
 
-  const commands = props.commands.map((c) => {
+  const commands = props.commands.map((c, index) => {
     return (
       <ListItemButton
         sx={{ pl: 4 }}
@@ -26,6 +26,7 @@ function SidebarGroup(props) {
             )
           )
         }
+        key={index}
       >
         {c.icon && <ListItemIcon>{c.icon}</ListItemIcon>}
         <ListItemText primary={c.name} />
