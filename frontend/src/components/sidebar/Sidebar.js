@@ -20,6 +20,7 @@ import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Add from "@mui/icons-material/Add";
 import CodeIcon from "@mui/icons-material/Code";
 import SortIcon from "@mui/icons-material/Sort";
+import FunctionsIcon from "@mui/icons-material/Functions";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
@@ -34,6 +35,7 @@ import { PrependLineCommand } from "../../state/PrependLineCommand";
 import { AppendLineCommand } from "../../state/AppendLineCommand";
 import { ListwiseDeletionCommand } from "../../state/ListwiseDeletionCommand";
 import { ImputeCommand } from "../../state/ImputeCommand";
+import { AggregationCommand } from "../../state/AggregationCommand";
 import { CodeCommand } from "../../state/CodeCommand";
 
 function Sidebar(props) {
@@ -113,6 +115,11 @@ function Sidebar(props) {
           name: "Imputation",
           icon: <Add />,
           commandType: ImputeCommand,
+        },
+        {
+          name: "Aggregation",
+          icon: <FunctionsIcon />,
+          commandType: AggregationCommand,
         },
       ],
     },
