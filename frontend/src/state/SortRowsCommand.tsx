@@ -4,12 +4,14 @@ import { Command } from "./Command";
 
 interface SortRowsCommandArguments {
   isAscending: boolean;
+  columnName: string;
 }
 
 export class SortRowsCommand implements Command {
   private readonly label = "Sort Rows";
   private arguments: SortRowsCommandArguments = {
     isAscending: true,
+    columnName: "",
   };
   private readonly component = (
     <SortRowsCommandContent
@@ -68,13 +70,24 @@ export class SortRowsCommand implements Command {
    */
   public generateScript(): string {
     return `
-def sort_rows(text):
+import pandas as pd
+from io import StringIO
 
-    rows = sorted(text.split(\n), reverse=${this.arguments.isAscending ? "False" : "True"})
+def sort_rows_command(text):
+  # Load the data into a Pandas dataframe
+  text_io = StringIO(text)
+  df = pd.read_csv(text_io)
+  df = df.infer_objects()
 
-    return """\n""".join(rows)
-    
-text = sort_rows(text)
+  # Sorting
+  df = df.sort_values(by=${this.arguments.columnName}, ascending=${
+      this.arguments.isAscending ? "True" : "False"
+    })
+
+  # Return the result as a CSV
+  return df.to_csv(index=False)
+
+text = sort_rows_command(text)
 `;
   }
 

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { CardContent } from "@mui/material";
 import { Box } from "@mui/system";
@@ -8,13 +9,15 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 
 function SortRowsCommandContent(props) {
-  const [isAscending, setIsAscending] = useState("");
+  const [isAscending, setIsAscending] = useState(true);
+  const [columnName, setColumnName] = useState("");
 
   useEffect(() => {
     props.onArgumentsChange({
       isAscending,
+      columnName,
     });
-  }, [isAscending]);
+  }, [isAscending, columnName]);
 
   return (
     <>
@@ -28,7 +31,8 @@ function SortRowsCommandContent(props) {
           align="center"
           paddingBottom={1}
         >
-          Sort rows in ascending or descending order.
+          Sort rows in ascending or descending order. Requires CSV with a
+          header.
         </Typography>
         <Box
           sx={{
@@ -40,6 +44,13 @@ function SortRowsCommandContent(props) {
             gap: "8px",
           }}
         >
+          <TextField
+            id="outlined-basic"
+            label="Column name"
+            variant="outlined"
+            onChange={(event) => setColumnName(event.target.value)}
+            sx={{ minWidth: 120 }}
+          />
           <FormControl sx={{ minWidth: 120 }}>
             <InputLabel id="demo-controlled-open-select-label">
               Order
