@@ -76,7 +76,7 @@ def filter_separated_values(text):
     
   rows = text.split(${this.arguments.separator})
    
-  output = [row for row in rows if re.search(${this.arguments.regEx}) is not None]
+  output = [row for row in rows if re.search(r"${this.arguments.regEx}", row) is not None]
 
   return """${this.arguments.separator}""".join(rows)
     

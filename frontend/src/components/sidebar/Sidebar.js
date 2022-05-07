@@ -19,6 +19,7 @@ import DoNotDisturbOnTotalSilenceIcon from "@mui/icons-material/DoNotDisturbOnTo
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Add from "@mui/icons-material/Add";
 import CodeIcon from "@mui/icons-material/Code";
+import SortIcon from "@mui/icons-material/Sort";
 
 import { ReplaceCommand } from "../../state/ReplaceCommand";
 import { FilterRowsCommand } from "../../state/FilterRowsCommand";
@@ -27,6 +28,7 @@ import { FilterColsCommand } from "../../state/FilterColsCommand";
 import { WrapCommand } from "../../state/WrapCommand";
 import { RemoveDuplicatesCommand } from "../../state/RemoveDuplicatesCommand";
 import { CountUniqueWordsCommand } from "../../state/CountUniqueWordsCommand";
+import { SortRowsCommand } from "../../state/SortRowsCommand";
 import { RemoveHeaderCommand } from "../../state/RemoveHeaderCommand";
 import { PrependLineCommand } from "../../state/PrependLineCommand";
 import { AppendLineCommand } from "../../state/AppendLineCommand";
@@ -54,6 +56,11 @@ function Sidebar(props) {
           name: "Count unique words",
           icon: <NumbersIcon />,
           commandType: CountUniqueWordsCommand,
+        },
+        {
+          name: "Sort rows",
+          icon: <SortIcon />,
+          commandType: SortRowsCommand,
         },
         {
           name: "Prepend line",
