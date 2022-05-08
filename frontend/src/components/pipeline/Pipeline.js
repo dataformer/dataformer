@@ -47,15 +47,19 @@ function Pipeline(props) {
                 {command.getComponent()}
               </Box>
               <CardActions sx={{ justifyContent: "center" }}>
-                <Button size="small" color="primary">
-                  {
-                    <EditIcon
-                      onClick={() =>
-                        props.setState(props.state.editCommand(command.getId()))
-                      }
-                    />
-                  }
-                </Button>
+                {command.constructor.name !== "CodeCommand" ? (
+                  <Button size="small" color="primary">
+                    {
+                      <EditIcon
+                        onClick={() =>
+                          props.setState(
+                            props.state.editCommand(command.getId())
+                          )
+                        }
+                      />
+                    }
+                  </Button>
+                ) : undefined}
                 <Button size="small" color="primary">
                   {
                     <DoDisturbIcon
