@@ -60,11 +60,6 @@ function Sidebar(props) {
           commandType: CountUniqueWordsCommand,
         },
         {
-          name: "Sort rows",
-          icon: <SortIcon />,
-          commandType: SortRowsCommand,
-        },
-        {
           name: "Prepend line",
           icon: <ArrowDownwardIcon />,
           commandType: PrependLineCommand,
@@ -103,9 +98,14 @@ function Sidebar(props) {
       ],
     },
     {
-      name: "Missing values",
+      name: "CSV",
       icon: <DoNotDisturbOnTotalSilenceIcon />,
       commands: [
+        {
+          name: "Sort rows",
+          icon: <SortIcon />,
+          commandType: SortRowsCommand,
+        },
         {
           name: "Listwise deletion",
           icon: <DeleteForeverIcon />,
