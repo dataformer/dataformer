@@ -12,7 +12,6 @@ function DataOutput(props) {
         minRows={12}
         maxRows={12}
         fullWidth
-        disabled
         value={props.state.getOutputDataText()}
       />
     </Box>
