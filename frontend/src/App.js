@@ -5,6 +5,8 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
+import FileDownloadIcon from "@mui/icons-material/FileDownload";
+import ExitToAppIcon from "@mui/icons-material/ExitToApp";
 import Sidebar from "./components/sidebar/Sidebar";
 import Pipeline from "./components/pipeline/Pipeline";
 import Data from "./components/data/Data";
@@ -49,6 +51,23 @@ function App() {
     }
   }
 
+  function downloadTextFile(content, filename) {
+    const element = document.createElement("a");
+    const file = new Blob([content], { type: "text/plain" });
+    element.href = URL.createObjectURL(file);
+    element.download = filename;
+    document.body.appendChild(element);
+    element.click();
+  }
+
+  function downloadOutput() {
+    downloadTextFile(state.getOutputDataText(), "output.txt");
+  }
+
+  function downloadScript() {
+    downloadTextFile(state.parseCommandSequence(true), "dataformer_script.py");
+  }
+
   return (
     <div className="App">
       <AppBar position="static">
@@ -70,7 +89,29 @@ function App() {
             component="label"
           >
             <FileOpenIcon />
-            <input type="file" onChange={(even) => uploadFile(event)} hidden />
+            <input type="file" onChange={() => uploadFile()} hidden />
+          </IconButton>
+          <IconButton
+            size="large"
+            aria-label="download output"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit"
+            component="label"
+            onClick={downloadOutput}
+          >
+            <FileDownloadIcon />
+          </IconButton>
+          <IconButton
+            size="large"
+            aria-label="download output"
+            aria-controls="menu-appbar"
+            aria-haspopup="true"
+            color="inherit"
+            component="label"
+            onClick={downloadScript}
+          >
+            <ExitToAppIcon />
           </IconButton>
         </Toolbar>
       </AppBar>
