@@ -89,7 +89,7 @@ function App() {
             component="label"
           >
             <FileOpenIcon />
-            <input type="file" onChange={() => uploadFile()} hidden />
+            <input type="file" onChange={(event) => uploadFile(event)} hidden />
           </IconButton>
           <IconButton
             size="large"
