@@ -76,6 +76,7 @@ def filter_column_names(text):
     df = pd.read_csv(text_io)
     df = df.infer_objects()
     column_names = "${this.arguments.columnNames}".split(",")
+    column_names = [cn.strip() for cn in column_names]
     df = df[column_names]
     return df.to_csv(index=False)
 
