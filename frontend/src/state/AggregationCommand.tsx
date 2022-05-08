@@ -12,12 +12,9 @@ enum Functions {
   "std",
   "var",
   "sem",
-  "first",
-  "last",
 }
 interface AggregationCommandArguments {
   fn: Functions | "";
-  axis: 0 | 1;
   columns: string;
 }
 
@@ -25,7 +22,6 @@ export class AggregationCommand implements Command {
   private readonly label = "Aggregation";
   private arguments: AggregationCommandArguments = {
     fn: "",
-    axis: 0,
     columns: "",
   };
   private readonly component = (
@@ -99,7 +95,7 @@ def aggregation_command(text):
 
   # Aggregation
   if ${this.arguments.columns.length === 0 ? "True" : "False"}:
-    df = df.aggregate("""${this.arguments.fn}""", axis=${this.arguments.axis})
+    df = df.aggregate("""${this.arguments.fn}""")
   else:
     df = df.groupby(columns).agg("""${this.arguments.fn}""")
   df = df.reset_index()

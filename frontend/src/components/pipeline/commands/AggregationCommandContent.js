@@ -10,16 +10,14 @@ import FormControl from "@mui/material/FormControl";
 
 function AggregationCommandContent(props) {
   const [fn, setFn] = useState("max");
-  const [axis, setAxis] = useState(0);
   const [columns, setColumns] = useState("");
 
   useEffect(() => {
     props.onArgumentsChange({
       fn: fn,
-      axis: axis,
       columns: columns,
     });
-  }, [fn, axis, columns]);
+  }, [fn, columns]);
 
   return (
     <CardContent>
@@ -72,22 +70,6 @@ function AggregationCommandContent(props) {
             <MenuItem value={"std"}>Standard Deviation</MenuItem>
             <MenuItem value={"var"}>Variance</MenuItem>
             <MenuItem value={"sem"}>Standard Error of Means</MenuItem>
-            <MenuItem value={"first"}>First Record</MenuItem>
-            <MenuItem value={"last"}>Last Record</MenuItem>
-          </Select>
-        </FormControl>
-        <FormControl sx={{ minWidth: 120 }}>
-          <InputLabel id="demo-controlled-open-select-label">
-            Apply to
-          </InputLabel>
-          <Select
-            id="demo-simple-select-helper"
-            label="Apply to"
-            value={axis}
-            onChange={(event) => setAxis(event.target.value)}
-          >
-            <MenuItem value={0}>Columns</MenuItem>
-            <MenuItem value={1}>Rows</MenuItem>
           </Select>
         </FormControl>
       </Box>

@@ -80,7 +80,7 @@ def sort_rows_command(text):
   df = df.infer_objects()
 
   # Sorting
-  df = df.sort_values(by=${this.arguments.columnName}, ascending=${
+  df = df.sort_values(by="""${this.arguments.columnName}""", ascending=${
       this.arguments.isAscending ? "True" : "False"
     })
 
