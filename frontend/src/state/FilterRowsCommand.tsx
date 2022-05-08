@@ -87,7 +87,7 @@ import re
 
 def filter_rows(text):
     
-  rows = text.split(\n)
+  rows = text.split("""\n""")
    
   output = ${strategy}
 
