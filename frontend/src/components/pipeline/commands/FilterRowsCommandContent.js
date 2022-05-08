@@ -3,15 +3,21 @@ import TextField from "@mui/material/TextField";
 import Typography from "@mui/material/Typography";
 import { CardContent } from "@mui/material";
 import { Box } from "@mui/system";
+import Checkbox from "@mui/material/Checkbox";
+import FormControlLabel from "@mui/material/FormControlLabel";
 
 function FilterRowsCommandContent(props) {
-  const [regEx, setRegEx] = useState("");
+  const [filter, setFilter] = useState("");
+  const [isInverse, setIsInverse] = useState(false);
+  const [isRegex, setIsRegex] = useState(true);
 
   useEffect(() => {
     props.onArgumentsChange({
-      regEx,
+      filter,
+      isInverse,
+      isRegex,
     });
-  }, [regEx]);
+  }, [filter, isInverse, isRegex]);
 
   return (
     <>
@@ -25,12 +31,12 @@ function FilterRowsCommandContent(props) {
           align="center"
           paddingBottom={1}
         >
-          Filter rows by specifying a regular expression to match.
+          Filter rows by specifying an expression to match.
         </Typography>
         <Box
           sx={{
             display: "flex",
-            flaxWrap: "wrap",
+            flexWrap: "wrap",
             flexDirection: "row",
             justifyContent: "center",
             width: "100%",
@@ -39,9 +45,30 @@ function FilterRowsCommandContent(props) {
         >
           <TextField
             id="outlined-basic"
-            label="Regular Expression"
+            label="Filter expression"
             variant="outlined"
-            onChange={(event) => setRegEx(event.target.value)}
+            onChange={(event) => setFilter(event.target.value)}
+            sx={{ minWidth: 120 }}
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={isInverse}
+                onChange={(event) => setIsInverse(event.target.checked)}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            }
+            label="Inverse"
+          />
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={isRegex}
+                onChange={(event) => setIsRegex(event.target.checked)}
+                inputProps={{ "aria-label": "controlled" }}
+              />
+            }
+            label="Regex"
           />
         </Box>
       </CardContent>
