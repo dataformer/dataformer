@@ -11,15 +11,15 @@ import FormControl from "@mui/material/FormControl";
 function AggregationCommandContent(props) {
   const [fn, setFn] = useState("max");
   const [axis, setAxis] = useState(0);
-  const [columnName, setColumnName] = useState("");
+  const [columns, setColumns] = useState("");
 
   useEffect(() => {
     props.onArgumentsChange({
       fn: fn,
       axis: axis,
-      columnName: columnName,
+      columns: columns,
     });
-  }, [fn, axis, columnName]);
+  }, [fn, axis, columns]);
 
   return (
     <CardContent>
@@ -32,8 +32,10 @@ function AggregationCommandContent(props) {
         align="center"
         paddingBottom={1}
       >
-        Aggregation command allows you to apply various aggregation functions
-        along the columns or rows. Requires CSV with a header.
+        Aggregation command allows you to apply various aggregation functions.
+        Specify comma-separated column names to group-by first or leave the
+        field empty to apply to the entire dataframe. Requires CSV with a
+        header.
       </Typography>
       <Box
         sx={{
@@ -46,10 +48,10 @@ function AggregationCommandContent(props) {
       >
         <TextField
           id="outlined-basic"
-          label="Group by column"
+          label="Group-by column names (optional)"
           variant="outlined"
-          onChange={(event) => setColumnName(event.target.value)}
-          sx={{ minWidth: 120 }}
+          onChange={(event) => setColumns(event.target.value)}
+          sx={{ minWidth: 360 }}
         />
         <FormControl sx={{ minWidth: 120 }}>
           <InputLabel id="demo-controlled-open-select-label">

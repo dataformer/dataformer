@@ -18,7 +18,7 @@ enum Functions {
 interface AggregationCommandArguments {
   fn: Functions | "";
   axis: 0 | 1;
-  columnName: string;
+  columns: string;
 }
 
 export class AggregationCommand implements Command {
@@ -26,7 +26,7 @@ export class AggregationCommand implements Command {
   private arguments: AggregationCommandArguments = {
     fn: "",
     axis: 0,
-    columnName: "",
+    columns: "",
   };
   private readonly component = (
     <AggregationCommandContent
@@ -93,10 +93,15 @@ def aggregation_command(text):
   df = pd.read_csv(text_io)
   df = df.infer_objects()
 
+  columns = [column for column in """${
+    this.arguments.columns
+  }""".split(',') if column != ""]
+
   # Aggregation
-  df = df.groupby(["""${this.arguments.columnName}"""]).agg("${
-      this.arguments.fn
-    }")
+  if ${this.arguments.columns.length === 0 ? "True" : "False"}:
+    df = df.aggregate("""${this.arguments.fn}""", axis=${this.arguments.axis})
+  else:
+    df = df.groupby(columns).agg("""${this.arguments.fn}""")
   df = df.reset_index()
 
   # Return the result as a CSV
