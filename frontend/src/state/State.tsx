@@ -74,18 +74,24 @@ export class State {
     return new State({ ...this.data, commands: newCommands });
   }
 
-  public parseCommandSequence(): string {
+  public parseCommandSequence(isBeingExported = false): string {
     var commandsString: string = this.getCommands()
       .filter((command) => command.getIsEnabled())
       .map((command) => command.generateScript())
       .join("\n");
-    var fullCommand: string =
-      "text = " +
-      '"""' +
-      this.getInputDataText() +
-      '"""\n' +
-      commandsString +
-      "\nprint(text)";
+    var fullCommand = "";
+    if (isBeingExported) {
+      fullCommand += `
+from sys import stdin
+
+text = ""
+for line in stdin:
+  text += line
+`;
+    } else {
+      fullCommand += "text = " + '"""' + this.getInputDataText() + '"""\n';
+    }
+    fullCommand += commandsString + "\nprint(text)";
     return fullCommand;
   }
 

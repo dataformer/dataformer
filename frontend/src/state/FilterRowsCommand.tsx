@@ -3,13 +3,17 @@ import { Command } from "./Command";
 import FilterRowsCommandContent from "../components/pipeline/commands/FilterRowsCommandContent";
 
 interface FilterRowsCommandArguments {
-  regEx: string;
+  filter: string;
+  isRegex: boolean;
+  isInverse: boolean;
 }
 
 export class FilterRowsCommand implements Command {
   private readonly label = "Filter Rows";
   private arguments: FilterRowsCommandArguments = {
-    regEx: "",
+    filter: "",
+    isRegex: true,
+    isInverse: false,
   };
   private readonly component = (
     <FilterRowsCommandContent
@@ -67,6 +71,17 @@ export class FilterRowsCommand implements Command {
    * @inheritdoc
    */
   public generateScript(): string {
+    let strategy = "";
+    if (this.arguments.isRegex) {
+      strategy = `[row for row in rows if re.search(r"${
+        this.arguments.filter
+      }", row) is${this.arguments.isInverse ? "" : " not"} None]`;
+    } else {
+      strategy = `[row for row in rows if """${this.arguments.filter}"""${
+        this.arguments.isInverse ? " not" : ""
+      } in row]`;
+    }
+
     return `
 import re
 
@@ -74,7 +89,7 @@ def filter_rows(text):
     
   rows = text.split(\n)
    
-  output = [row for row in rows if re.search(r"${this.arguments.regEx}", row) is not None]
+  output = ${strategy}
 
   return """\n""".join(output)
     
