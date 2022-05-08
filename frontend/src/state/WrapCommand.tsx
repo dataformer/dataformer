@@ -97,6 +97,10 @@ def wrap_command(text):
     # Trim superfluous whitespace
     field_name = field_name.strip()
     value = value.strip()
+    
+    # Put value in quotes if needed
+    if ',' in value:
+      value = '"' + value.replace('"', '""') + '"'
 
     # Skip the current data item if field or value is empty
     if not field_name or not value:
