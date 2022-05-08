@@ -15,7 +15,7 @@ import PlaylistRemoveIcon from "@mui/icons-material/PlaylistRemove";
 import NumbersIcon from "@mui/icons-material/Numbers";
 import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
-import DoNotDisturbOnTotalSilenceIcon from "@mui/icons-material/DoNotDisturbOnTotalSilence";
+import TableChartOutlinedIcon from "@mui/icons-material/TableChartOutlined";
 import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 import Add from "@mui/icons-material/Add";
 import CodeIcon from "@mui/icons-material/Code";
@@ -100,7 +100,7 @@ function Sidebar(props) {
     },
     {
       name: "CSV",
-      icon: <DoNotDisturbOnTotalSilenceIcon />,
+      icon: <TableChartOutlinedIcon />,
       commands: [
         {
           name: "Filter column names",
