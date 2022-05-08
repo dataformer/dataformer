@@ -60,6 +60,7 @@ def count_unique_words(text):
     import string
     for character in string.punctuation:
       text = text.replace(character, '')
+    text = text.replace('"', "'")
     return len(set(text.split()))
     
 text = count_unique_words(text)
