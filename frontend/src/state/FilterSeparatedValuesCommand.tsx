@@ -3,15 +3,19 @@ import { Command } from "./Command";
 import FilterSeparatedValuesCommandContent from "../components/pipeline/commands/FilterSeparatedValuesCommandContent";
 
 interface FilterSeparatedValuesCommandArguments {
+  filter: string;
+  isRegex: boolean;
+  isInverse: boolean;
   separator: string;
-  regEx: string;
 }
 
 export class FilterSeparatedValuesCommand implements Command {
   private readonly label = "Filter Separated Values";
   private arguments: FilterSeparatedValuesCommandArguments = {
+    filter: "",
+    isRegex: true,
+    isInverse: false,
     separator: "",
-    regEx: "",
   };
   private readonly component = (
     <FilterSeparatedValuesCommandContent
@@ -69,16 +73,29 @@ export class FilterSeparatedValuesCommand implements Command {
    * @inheritdoc
    */
   public generateScript(): string {
+    let strategy = "";
+    if (this.arguments.isRegex) {
+      strategy = `[row for row in rows if re.search(r"${
+        this.arguments.filter
+      }", row) is${this.arguments.isInverse ? "" : " not"} None]`;
+    } else {
+      strategy = `[row for row in rows if """${this.arguments.filter}"""${
+        this.arguments.isInverse ? " not" : ""
+      } in row]`;
+    }
+
     return `
 import re
 
 def filter_separated_values(text):
-    
-  rows = text.split(${this.arguments.separator})
-   
-  output = [row for row in rows if re.search(r"${this.arguments.regEx}", row) is not None]
 
-  return """${this.arguments.separator}""".join(rows)
+  separator = """${this.arguments.separator}"""
+    
+  rows = text.split(separator)
+   
+  output = ${strategy}
+
+  return separator.join(output)
     
 text = filter_separated_values(text)
 `;
