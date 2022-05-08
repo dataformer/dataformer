@@ -37,6 +37,7 @@ import { ListwiseDeletionCommand } from "../../state/ListwiseDeletionCommand";
 import { ImputeCommand } from "../../state/ImputeCommand";
 import { AggregationCommand } from "../../state/AggregationCommand";
 import { CodeCommand } from "../../state/CodeCommand";
+import { FilterColumnNamesCommand } from "../../state/FilterColumnNamesCommand";
 
 function Sidebar(props) {
   const commandGroups = [
@@ -101,6 +102,11 @@ function Sidebar(props) {
       name: "CSV",
       icon: <DoNotDisturbOnTotalSilenceIcon />,
       commands: [
+        {
+          name: "Filter column names",
+          icon: <FilterAltIcon />,
+          commandType: FilterColumnNamesCommand,
+        },
         {
           name: "Sort rows",
           icon: <SortIcon />,

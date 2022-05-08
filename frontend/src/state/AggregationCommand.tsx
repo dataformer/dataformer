@@ -94,9 +94,7 @@ def aggregation_command(text):
   df = df.infer_objects()
 
   # Aggregation
-  df = df.groupby(["""${this.arguments.columnName}"""]).agg("${
-      this.arguments.fn
-    }")
+  df = df.groupby(["""${this.arguments.columnName}"""]).agg("${this.arguments.fn}")
   df = df.reset_index()
 
   # Return the result as a CSV

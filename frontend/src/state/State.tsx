@@ -87,15 +87,11 @@ from sys import stdin
 text = ""
 for line in stdin:
   text += line
-`
+`;
     } else {
-      fullCommand += "text = " +
-      '"""' +
-      this.getInputDataText() +
-      '"""\n'
+      fullCommand += "text = " + '"""' + this.getInputDataText() + '"""\n';
     }
-    fullCommand += commandsString +
-      "\nprint(text)";
+    fullCommand += commandsString + "\nprint(text)";
     return fullCommand;
   }
 

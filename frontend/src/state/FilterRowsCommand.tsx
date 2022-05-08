@@ -5,7 +5,7 @@ import FilterRowsCommandContent from "../components/pipeline/commands/FilterRows
 interface FilterRowsCommandArguments {
   filter: string;
   isRegex: boolean;
-  isInverse: boolean
+  isInverse: boolean;
 }
 
 export class FilterRowsCommand implements Command {
@@ -13,7 +13,7 @@ export class FilterRowsCommand implements Command {
   private arguments: FilterRowsCommandArguments = {
     filter: "",
     isRegex: true,
-    isInverse: false
+    isInverse: false,
   };
   private readonly component = (
     <FilterRowsCommandContent
@@ -73,9 +73,13 @@ export class FilterRowsCommand implements Command {
   public generateScript(): string {
     let strategy = "";
     if (this.arguments.isRegex) {
-      strategy = `[row for row in rows if re.search(r"${this.arguments.filter}", row) is${this.arguments.isInverse ? "" : " not"} None]`
+      strategy = `[row for row in rows if re.search(r"${
+        this.arguments.filter
+      }", row) is${this.arguments.isInverse ? "" : " not"} None]`;
     } else {
-      strategy = `[row for row in rows if """${this.arguments.filter}"""${this.arguments.isInverse ? " not" : ""} in row]`
+      strategy = `[row for row in rows if """${this.arguments.filter}"""${
+        this.arguments.isInverse ? " not" : ""
+      } in row]`;
     }
 
     return `
