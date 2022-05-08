@@ -154,7 +154,9 @@ function Sidebar(props) {
 
   return (
     <>
-      <Box sx={{ display: "flex" }}>
+      <Box
+        sx={{ display: "flex", height: `calc(100vh - 48px)`, overflow: "auto" }}
+      >
         <Box sx={{ width: props.width, flexShrink: 0 }}>
           <Drawer
             variant="permanent"
