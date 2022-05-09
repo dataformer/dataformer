@@ -44,7 +44,7 @@ export class State {
   }
 
   public getCommandIndex(commandId: number): number {
-    return this.getCommands().findIndex((c) => c.getId() === commandId)
+    return this.getCommands().findIndex((c) => c.getId() === commandId);
   }
 
   public commandHasPrev(commandId: number): boolean {
@@ -57,22 +57,34 @@ export class State {
 
   public moveCommandUp(commandId: number): State {
     const commands = this.getCommands();
-    const thisCommand = commands[this.getCommandIndex(commandId)]
-    const preceedingCommand = commands[this.getCommandIndex(commandId) - 1]
+    const thisCommand = commands[this.getCommandIndex(commandId)];
+    const preceedingCommand = commands[this.getCommandIndex(commandId) - 1];
     return new State({
       ...this.data,
-      commands: commands.map((c) => c.getId() === preceedingCommand.getId() ? thisCommand : (c.getId() === commandId ? preceedingCommand : c))
-    })
+      commands: commands.map((c) =>
+        c.getId() === preceedingCommand.getId()
+          ? thisCommand
+          : c.getId() === commandId
+          ? preceedingCommand
+          : c
+      ),
+    });
   }
 
   public moveCommandDown(commandId: number): State {
     const commands = this.getCommands();
-    const thisCommand = commands[this.getCommandIndex(commandId)]
-    const subsequentCommand = commands[this.getCommandIndex(commandId) + 1]
+    const thisCommand = commands[this.getCommandIndex(commandId)];
+    const subsequentCommand = commands[this.getCommandIndex(commandId) + 1];
     return new State({
       ...this.data,
-      commands: commands.map((c) => c.getId() === subsequentCommand.getId() ? thisCommand : (c.getId() === commandId ? subsequentCommand : c))
-    })
+      commands: commands.map((c) =>
+        c.getId() === subsequentCommand.getId()
+          ? thisCommand
+          : c.getId() === commandId
+          ? subsequentCommand
+          : c
+      ),
+    });
   }
 
   public editCommand(commandId: number): State {
