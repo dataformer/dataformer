@@ -57,6 +57,7 @@ function Pipeline(props) {
                   onClick={() =>
                     props.setState(props.state.moveCommandUp(command.getId()))
                   }
+                  title="Move command up"
                 >
                   <ArrowUpwardIcon />
                 </Button>
@@ -67,11 +68,16 @@ function Pipeline(props) {
                   onClick={() =>
                     props.setState(props.state.moveCommandDown(command.getId()))
                   }
+                  title="Move command down"
                 >
                   <ArrowDownwardIcon />
                 </Button>
                 {command.constructor.name !== "CodeCommand" ? (
-                  <Button size="small" color="primary">
+                  <Button
+                    size="small"
+                    color="primary"
+                    title="Edit command code"
+                  >
                     {
                       <EditIcon
                         onClick={() =>
@@ -83,7 +89,7 @@ function Pipeline(props) {
                     }
                   </Button>
                 ) : undefined}
-                <Button size="small" color="primary">
+                <Button size="small" color="primary" title="Disable command">
                   {
                     <DoDisturbIcon
                       onClick={() =>
@@ -100,6 +106,7 @@ function Pipeline(props) {
                   onClick={() =>
                     props.setState(props.state.removeCommand(command.getId()))
                   }
+                  title="Remove command from pipeline"
                 >
                   <DeleteIcon />
                 </Button>
