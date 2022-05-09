@@ -6,8 +6,11 @@ import { grey } from "@mui/material/colors";
 import EditIcon from "@mui/icons-material/Edit";
 import DoDisturbIcon from "@mui/icons-material/DoDisturb";
 import DeleteIcon from "@mui/icons-material/Delete";
+import ArrowUpwardIcon from "@mui/icons-material/ArrowUpward";
+import ArrowDownwardIcon from "@mui/icons-material/ArrowDownward";
 
 function Pipeline(props) {
+  console.log(props.state.getCommands());
   return (
     <>
       <Box
@@ -47,6 +50,26 @@ function Pipeline(props) {
                 {command.getComponent()}
               </Box>
               <CardActions sx={{ justifyContent: "center" }}>
+                <Button
+                  size="small"
+                  color="primary"
+                  disabled={!props.state.commandHasPrev(command.getId())}
+                  onClick={() =>
+                    props.setState(props.state.moveCommandUp(command.getId()))
+                  }
+                >
+                  <ArrowUpwardIcon />
+                </Button>
+                <Button
+                  size="small"
+                  color="primary"
+                  disabled={!props.state.commandHasNext(command.getId())}
+                  onClick={() =>
+                    props.setState(props.state.moveCommandDown(command.getId()))
+                  }
+                >
+                  <ArrowDownwardIcon />
+                </Button>
                 {command.constructor.name !== "CodeCommand" ? (
                   <Button size="small" color="primary">
                     {
