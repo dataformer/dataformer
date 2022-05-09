@@ -49,7 +49,7 @@ function AggregationCommandContent(props) {
           label="Group-by column names (optional)"
           variant="outlined"
           onChange={(event) => setColumns(event.target.value)}
-          sx={{ minWidth: 360 }}
+          sx={{ minWidth: 280 }}
         />
         <FormControl sx={{ minWidth: 120 }}>
           <InputLabel id="demo-controlled-open-select-label">
