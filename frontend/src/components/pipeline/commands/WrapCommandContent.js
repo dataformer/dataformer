@@ -26,7 +26,8 @@ function WrapCommandContent(props) {
         align="center"
         paddingBottom={1}
       >
-        Allows you to combine related data on consecutive lines
+        Combines related data on consecutive lines into a single record. Each
+        line should contain a field name and a value, divided by a separator.
       </Typography>
       <Box
         sx={{
