@@ -78,8 +78,7 @@ function Pipeline(props) {
                     props.setState(props.state.removeCommand(command.getId()))
                   }
                 >
-                  {<DeleteIcon />}
-                  ID: {command.getId()}
+                  <DeleteIcon />
                 </Button>
               </CardActions>
             </Card>
