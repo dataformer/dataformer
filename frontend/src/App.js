@@ -106,12 +106,12 @@ function App() {
           </IconButton>
           <IconButton
             size="large"
-            aria-label="download script"
+            aria-label="export script"
             aria-controls="menu-appbar"
             aria-haspopup="true"
             color="inherit"
             component="label"
-            title="Download script"
+            title="Export script"
             onClick={downloadScript}
           >
             <ExitToAppIcon />
