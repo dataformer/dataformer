@@ -87,6 +87,7 @@ function App() {
             aria-haspopup="true"
             color="inherit"
             component="label"
+            title="Open file"
           >
             <FileOpenIcon />
             <input type="file" onChange={(event) => uploadFile(event)} hidden />
@@ -99,16 +100,18 @@ function App() {
             color="inherit"
             component="label"
             onClick={downloadOutput}
+            title="Download output"
           >
             <FileDownloadIcon />
           </IconButton>
           <IconButton
             size="large"
-            aria-label="download output"
+            aria-label="download script"
             aria-controls="menu-appbar"
             aria-haspopup="true"
             color="inherit"
             component="label"
+            title="Download script"
             onClick={downloadScript}
           >
             <ExitToAppIcon />
